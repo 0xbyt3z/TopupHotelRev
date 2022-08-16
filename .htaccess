@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule home index.php [L]
+RewriteRule login login.php [L]
+RewriteRule cussignup cussignup.php [L]
