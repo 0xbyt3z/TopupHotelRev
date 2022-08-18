@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Signup | Hotel Reservation</title>
     
-    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="./app.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -22,6 +22,7 @@ include "./components/Nav.php";
 
 <div class="w-screen h-screen flex mt-36 justify-center">
     <div class="h-auto w-[30rem] flex flex-col">
+        <form>
         <div class="w-full flex justify-end">
             <a href="cussignup.php" class="flex items-center px-5 py-2 bg-cyan-500 font-bold text-white">Signup as a Customer
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white ml-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -81,6 +82,7 @@ include "./components/Nav.php";
         <div class="my-5 flex justify-between">
             <span class="text-sm">Already have an account?<a href="" class="text-blue-500 mx-2">Login</a></span>
         </div>
+        </form>
     </div>
 </div>
     

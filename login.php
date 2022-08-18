@@ -19,6 +19,7 @@ include "./components/Nav.php";
 
 <div class="w-screen h-screen flex mt-36 justify-center">
     <div class="h-auto w-[20rem] flex flex-col">
+        <form>
         <span class="text-4xl font-bold mb-10">Login</span>
 
         <div class="flex flex-col mt-4">
@@ -37,6 +38,7 @@ include "./components/Nav.php";
             <span class="text-sm">Don't have an account?<a href="" class="text-blue-500 mx-2">Signup</a></span>
             <img src="images/forgotpass.png" alt="asdasd" class="h-5" onclick=(forgotpass())>
         </div>
+        </form>
     </div>
 </div>
     
