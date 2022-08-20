@@ -35,7 +35,7 @@ include "./components/Nav.php";
         <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold">Login</button>
 
         <div class="my-5 flex justify-between">
-            <span class="text-sm">Don't have an account?<a href="" class="text-blue-500 mx-2">Signup</a></span>
+            <span class="text-sm">Don't have an account?<a href="cussignup.php" class="text-blue-500 mx-2">Signup</a></span>
             <img src="images/forgotpass.png" alt="asdasd" class="h-5" onclick=(forgotpass())>
         </div>
         </form>
