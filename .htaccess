@@ -1,3 +1,5 @@
+ErrorDocument 404 /topuphotelrev/errors/404.php
+
 RewriteEngine On
 RewriteRule home index.php [L]
 RewriteRule login login.php [L]
