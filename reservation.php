@@ -58,7 +58,7 @@ include "./components/Nav.php";
 
                     <div class="flex">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
-                            <label for="" class="text-sm">Checking Date</label>
+                            <label for="" class="text-sm">Guest Count</label>
                             <input type="number" name="" id=""
                                 class="bg-white border border-gray-300 h-8 outline-none pl-1" max="10" />
                         </div>
