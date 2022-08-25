@@ -3,5 +3,5 @@ ErrorDocument 404 /topuphotelrev/errors/404.php
 RewriteEngine On
 RewriteRule home index.php [L]
 RewriteRule login login.php [L]
-RewriteRule . login.php [L]
+RewriteRule index.php login.php [L]
 RewriteRule cussignup cussignup.php [L]

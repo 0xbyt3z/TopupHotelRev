@@ -13,6 +13,11 @@
 <body>
 
 
+<?php
+include "./components/Nav.php";
+
+?>
+
 <div class="w-screen h-screen flex mt-36 justify-center">
     <div class="h-auto w-[20rem] flex flex-col">
         <form>

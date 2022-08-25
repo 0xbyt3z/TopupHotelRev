@@ -20,13 +20,13 @@ include "./components/Nav.php";
 
 ?>
 
-    <div class="w-screen h-screen flex mt-36 justify-center">
+    <div class="w-screen h-screen flex mt-24 justify-center">
         <form method="post" action="">
             <div class="flex flex-col w-[70vw]">
                 <div class="w-full flex">
                     <div class="w-1/3">
                         <div class="h-auto flex flex-col">
-                            <span class="text-4xl font-bold mb-10">Reservation</span>
+                            <span class="text-4xl font-bold mb-10">Block Reservation</span>
 
                             <!--grid-->
                             <div class="grid grid-cols-2 gap-2">
@@ -130,7 +130,7 @@ include "./components/Nav.php";
                                 $perweekcharge = "1500";
                                 $permonthcharge = "2000";
                                 $discount = "2%";
-                                for ($i=0; $i < 7; $i++) { 
+                                for ($i=0; $i < 10; $i++) { 
                                     echo '
                                             <tr class="bg-white border-b ">
                                                 <th scope="row"
