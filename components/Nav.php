@@ -1,54 +1,118 @@
 <script>
-    let state = false;
-    const toggleAvatarDropDown = () => {
-        if (state) {
-            document.getElementById("nav-avatar-dropdown").classList.add("invisible")
-        } else {
-            document.getElementById("nav-avatar-dropdown").classList.remove("invisible")
-        }
-        state = !state
+  let state = false;
+  const toggleAvatarDropDown = () => {
+    if (state) {
+      document.getElementById("nav-avatar-dropdown").classList.add("invisible")
+    } else {
+      document.getElementById("nav-avatar-dropdown").classList.remove("invisible")
     }
+    state = !state
+  }
 </script>
 
-<div class="top-0 sticky bg-white shadow-lg h-16 w-screen flex items-center justify-end z-50">
-    <a href="/" class="text-gray-500 mx-3">Home</a>
-    <a href="reservation.php" class="text-gray-500 mx-3">Reservation</a>
-    <div>
-        <div class="rounded-full w-8 h-8 bg-white mr-10 ml-3" onclick="toggleAvatarDropDown();">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round"
-                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+<nav class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+
+    <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
+      <ul
+        class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a href="/topuphotelrev"
+            class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+            aria-current="page">Home</a>
+        </li>
+
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 ">Contact</a>
+        </li>
+
+        <!-- Reservation start-->
+        <li>
+          <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+            class="peer text-white  font-medium rounded-lg text-sm text-center inline-flex items-center"
+            type="button">Reservation
+            <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
-            <div id="nav-avatar-dropdown" onmouseleave="toggleAvatarDropDown()"
-                class="invisible absolute right-5 w-auto h-auto pr-5 pb-2 mt-2 shadow-lg bg-white  hover:block">
-                <div class="flex flex-col py-2 pl-2 h-auto">
-                    <a href="" class="flex items-center h-5 mb-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 font-extralight" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                        </svg>
-                        <span class="ml-4 text-sm text-gray-500">Dashboard</span>
-                    </a>
-                    <a href="" class="flex items-center h-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 font-extralight" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        <span class="ml-4 text-sm text-gray-500">Account</span>
-                    </a>
+          </button>
 
-                    
-                    <hr class="bg-gray-200 my-3">
-                    <a href="" class="flex items-center h-5 ">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 font-extralight" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="1">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        <span class="ml-4 text-sm text-gray-500">Logout</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+          <!-- Dropdown menu -->
+          <div id="dropdownDivider"
+            class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
+            <ul class=" py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Dashboard</a>
+              </li>
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Settings</a>
+              </li>
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Earnings</a>
+              </li>
+            </ul>
 
+          </div>
+        </li>
+        <!-- Reservation end-->
+
+
+        <!-- Customer start-->
+        <li>
+          <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+            class="peer text-white  font-medium rounded-lg text-sm text-center inline-flex items-center"
+            type="button">Customer
+            <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="dropdownDivider"
+            class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
+            <ul class=" py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Dashboard</a>
+              </li>
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Settings</a>
+              </li>
+              <li>
+                <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Earnings</a>
+              </li>
+            </ul>
+
+          </div>
+        </li>
+        <!-- Customer end-->
+        <li>
+          <a href="#"
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 ">Other</a>
+        </li>
+      </ul>
     </div>
-</div>
+
+    <div>
+      <div id="avatar" data-dropdown-toggle="avatardropdown" class="peer w-10 h-10 bg-white rounded-full">
+      </div>
+      <!-- Dropdown menu -->
+      <div id="avatardropdown"
+        class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
+        <ul class="relative py-1 text-sm text-gray-700 dark:text-gray-200 right-0" aria-labelledby="avatardropdown">
+          <li>
+            <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Profile</a>
+          </li>
+          <li>
+            <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Settings</a>
+          </li>
+          <li>
+            <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Logout</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</nav>
