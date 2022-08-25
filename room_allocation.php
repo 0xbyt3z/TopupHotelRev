@@ -26,8 +26,8 @@ include "./components/Nav.php";
             <div class="w-1/12 h-full">.</div>
             <div class="w-7/12 h-full flex justify-between">
                 <div class="flex items-center mr-2">
-                    <label for="" class="text-sm mr-2">Status</label>
-                    <select name="" id="" class="border h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
+                    <label for="" class=" mr-2">Status</label>
+                    <select name="" id="" class="h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
                         <option value="">Pending</option>
                         <option value="">Checked</option>
                         <option value="">Waiting</option>
@@ -43,11 +43,11 @@ include "./components/Nav.php";
         <!--containers-->
         <div class="w-screen h-full flex mt-10">
             <div class="w-1/12 h-full">.</div>
-            <div class="w-7/12 h-full">
+            <div class="w-7/12 h-full max-h-screen overflow-auto">
                 <!--table-->
-                <div class="overflow-x-auto relative">
-                    <table class="w-full text-sm text-left text-gray-500 z-0">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <div class="max-h-screen overflow-auto overflow-x-hidden relative">
+                    <table class="w-full  text-sm text-left text-gray-500 z-0">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
                                 <th scope="col" class="py-3 px-3 w-32">
                                     Room Number

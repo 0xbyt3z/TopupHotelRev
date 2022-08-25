@@ -73,11 +73,11 @@ include "./components/Nav.php";
 
                 </form>
             </div>
-            <div class="w-2/3 h-auto">
+            <div class="w-2/3 h-auto max-h-96">
 
-                <div class="overflow-x-auto relative">
+                <div class="max-h-96 overflow-auto overflow-x-hidden relative">
                     <table class="w-4/5 text-sm text-left text-gray-500 ml-10 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
                                 <th scope="col" class="py-3 px-3">
                                     Room no
@@ -103,7 +103,7 @@ include "./components/Nav.php";
                             $perweekcharge = "1500";
                             $permonthcharge = "2000";
                             $discount = "2%";
-                            for ($i=0; $i < 7; $i++) { 
+                            for ($i=0; $i < 20; $i++) { 
                                 echo '
                                         <tr class="bg-white border-b ">
                                             <th scope="row"

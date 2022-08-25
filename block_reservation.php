@@ -38,7 +38,7 @@ include "./components/Nav.php";
 
                                 </div>
                                 <div class="mr-4 group">
-                                    
+
                                 </div>
                                 <div class="mr-4 group col-span-2">
                                     <label for="" class="text-sm">Card Number</label>
@@ -68,8 +68,8 @@ include "./components/Nav.php";
                                     <label for="" class="text-sm">Room Type</label>
                                     <select name="" id=""
                                         class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900">
-                                        <option value="">Credit Card</option>
-                                        <option value="">Cash</option>
+                                        <option value="">Luxury</option>
+                                        <option value="">Deluxe</option>
                                     </select>
                                 </div>
 
@@ -95,76 +95,77 @@ include "./components/Nav.php";
                                 <div class="mr-4 col-span-2">
 
                                     <button
-                                        class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Signup</button>
+                                        class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">ADD</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="w-2/3 h-auto">
+                    <div class="w-2/3 max-h-96 mt-24 overflow-auto overflow-x-hidden">
 
-                        <div class="overflow-x-auto relative">
-                            <table class="w-4/5 text-sm text-left text-gray-500 ml-10 ">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                                    <tr>
-                                        <th scope="col" class="py-3 px-3">
-                                            Room no
-                                        </th>
-                                        <th scope="col" class="py-3 px-3">
-                                            Per Night
-                                        </th>
-                                        <th scope="col" class="py-3 px-3">
-                                            Per Week
-                                        </th>
-                                        <th scope="col" class="py-3 px-3">
-                                            Per Monthly
-                                        </th>
-                                        <th scope="col" class="py-3 px-2">
-                                            Discount
-                                        </th>
-                                    </tr>
+                        <div class="relative max-h-96">
+                        <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                            <tr>
+                                    <th scope="col" class="py-3 px-3">
+                                        Room no
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+                                        Per Night
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+                                        Per Week
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+                                        Per Monthly
+                                    </th>
+                                    <th scope="col" class="py-3 px-2">
+                                        Discount
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
 
-                                    <?php
-                                $pernightcharge = "500";
-                                $perweekcharge = "1500";
-                                $permonthcharge = "2000";
-                                $discount = "2%";
-                                for ($i=0; $i < 10; $i++) { 
-                                    echo '
-                                            <tr class="bg-white border-b ">
-                                                <th scope="row"
-                                                    class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
-                                                    '.$i.'
-                                                </th>
-                                                <td class="py-4 px-3">
-                                                    '.$pernightcharge.'
-                                                </td>
-                                                <td class="py-4 px-3">
-                                                '.$perweekcharge.'
-                                                </td>
-                                                <td class="py-4 px-3">
-                                                '.$permonthcharge.'
-                                                </td>
-                                                <td class="py-4 px-2">
-                                                '.$discount.'
-                                                </td>
-                                            </tr>
-                                            ';
-                                }
-                                
-                                ?>
-                                </tbody>
+                                <?php
+                            $pernightcharge = "500";
+                            $perweekcharge = "1500";
+                            $permonthcharge = "2000";
+                            $discount = "2%";
+                            for ($i=0; $i < 20; $i++) { 
+                                echo '
+                                        <tr class="bg-white border-b ">
+                                            <th scope="row"
+                                                class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
+                                                '.$i.'
+                                            </th>
+                                            <td class="py-4 px-3">
+                                                '.$pernightcharge.'
+                                            </td>
+                                            <td class="py-4 px-3">
+                                            '.$perweekcharge.'
+                                            </td>
+                                            <td class="py-4 px-3">
+                                            '.$permonthcharge.'
+                                            </td>
+                                            <td class="py-4 px-2">
+                                            '.$discount.'
+                                            </td>
+                                        </tr>
+                                        ';
+                            }
+                            
+                            ?>
+                            </tbody>
+
                             </table>
                         </div>
 
 
                     </div>
                 </div>
-                <div class="w-full">
-                    <div class="w-full overflow-x-auto">
+                <div class="w-full max-h-96 overflow-auto overflow-x-hidden">
+                    <div class="w-full max-h-96">
                         <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                                 <tr>
                                     <th scope="col" class="py-3 px-3">
                                         Room no
@@ -190,7 +191,7 @@ include "./components/Nav.php";
                             $perweekcharge = "1500";
                             $permonthcharge = "2000";
                             $discount = "2%";
-                            for ($i=0; $i < 7; $i++) { 
+                            for ($i=0; $i < 20; $i++) { 
                                 echo '
                                         <tr class="bg-white border-b ">
                                             <th scope="row"
@@ -221,7 +222,7 @@ include "./components/Nav.php";
 
                 <!--submit button-->
                 <div class="w-full flex justify-end">
-                    <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Signup</button>
+                    <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Create</button>
                 </div>
             </div>
         </form>

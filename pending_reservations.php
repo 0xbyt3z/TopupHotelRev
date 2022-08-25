@@ -43,11 +43,11 @@ include "./components/Nav.php";
         <!--containers-->
         <div class="w-screen h-full flex mt-10">
             <div class="w-1/12 h-full">.</div>
-            <div class="w-7/12 h-full bg-gray-400">
+            <div class="w-7/12 max-h-screen bg-gray-400">
                 <!--table-->
-                <div class="overflow-x-auto relative">
+                <div class="max-h-screen overflow-auto overflow-x-hidden">
                     <table class="w-full text-sm text-left text-gray-500 z-0">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
                                 <th scope="col" class="py-3 px-3">
                                     Customer
