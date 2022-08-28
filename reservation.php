@@ -16,9 +16,9 @@
 
 <body>
     <?php
-include "./components/Nav.php";
+    include "./components/Nav.php";
 
-?>
+    ?>
 
     <div class="w-screen h-screen flex mt-36 justify-center">
         <div class="flex w-2/3">
@@ -26,10 +26,19 @@ include "./components/Nav.php";
                 <form method="post" action="">
                     <span class="text-4xl font-bold mb-10">Reservation</span>
                     <div class="flex">
+                        <div class="flex flex-col mt-4 w-full">
+                            <label for="" class="text-sm">Customer</label>
+                            <select name="" id="" class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
+                                <option value="">Normal</option>
+                                <option value="">Luxury</option>
+                                <option value="">Extra Luxury</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
                             <label for="" class="text-sm">Room Type</label>
-                            <select name="" id=""
-                                class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
+                            <select name="" id="" class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
                                 <option value="">Normal</option>
                                 <option value="">Luxury</option>
                                 <option value="">Extra Luxury</option>
@@ -37,8 +46,7 @@ include "./components/Nav.php";
                         </div>
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
                             <label for="" class="text-sm">Payment Type</label>
-                            <select name="" id=""
-                                class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
+                            <select name="" id="" class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
                                 <option value="">Credit Card</option>
                                 <option value="">Cash</option>
                             </select>
@@ -59,8 +67,7 @@ include "./components/Nav.php";
                     <div class="flex">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
                             <label for="" class="text-sm">Guest Count</label>
-                            <input type="number" name="" id=""
-                                class="bg-white border border-gray-300 h-8 outline-none pl-1" max="10" />
+                            <input type="number" name="" id="" class="bg-white border border-gray-300 h-8 outline-none pl-1" max="10" />
                         </div>
                     </div>
 
@@ -103,29 +110,29 @@ include "./components/Nav.php";
                             $perweekcharge = "1500";
                             $permonthcharge = "2000";
                             $discount = "2%";
-                            for ($i=0; $i < 20; $i++) { 
+                            for ($i = 0; $i < 20; $i++) {
                                 echo '
                                         <tr class="bg-white border-b ">
                                             <th scope="row"
                                                 class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
-                                                '.$i.'
+                                                ' . $i . '
                                             </th>
                                             <td class="py-4 px-3">
-                                                '.$pernightcharge.'
+                                                ' . $pernightcharge . '
                                             </td>
                                             <td class="py-4 px-3">
-                                            '.$perweekcharge.'
+                                            ' . $perweekcharge . '
                                             </td>
                                             <td class="py-4 px-3">
-                                            '.$permonthcharge.'
+                                            ' . $permonthcharge . '
                                             </td>
                                             <td class="py-4 px-2">
-                                            '.$discount.'
+                                            ' . $discount . '
                                             </td>
                                         </tr>
                                         ';
                             }
-                            
+
                             ?>
                         </tbody>
                     </table>

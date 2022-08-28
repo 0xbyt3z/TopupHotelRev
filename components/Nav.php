@@ -1,3 +1,11 @@
+<?php  
+session_start();  
+if(!isset($_SESSION["user"]))
+{
+ header("location:login.php");
+}
+?> 
+
 <script>
   let state = false;
   const toggleAvatarDropDown = () => {
@@ -9,6 +17,8 @@
     state = !state
   }
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <nav class="px-2 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -138,7 +148,7 @@
             <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Settings</a>
           </li>
           <li>
-            <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Logout</a>
+            <a href="php_action/logout.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Logout</a>
           </li>
         </ul>
 
