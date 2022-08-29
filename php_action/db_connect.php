@@ -2,7 +2,7 @@
 
 $localhost = "127.0.0.1";
 $username = "root";
-$password = "$3h2vABc";
+$password = "$3h2vABC";
 $dbname = "hotel";
 
 //Connect and select the database
