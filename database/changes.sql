@@ -1,0 +1,1 @@
+alter table customer add column pass varchar(20) not null
