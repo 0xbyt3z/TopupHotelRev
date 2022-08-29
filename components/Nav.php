@@ -2,8 +2,11 @@
 session_start();  
 if(!isset($_SESSION["user"]))
 {
- header("location:login.php");
+  if("$_SERVER[REQUEST_URI]" != "/topuphotelrev/"){
+    header("location:login.php");
+  }
 }
+;
 ?> 
 
 <script>
