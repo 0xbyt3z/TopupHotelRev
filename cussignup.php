@@ -70,11 +70,11 @@ include "./components/Nav.php";
         </div>
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Password</label>
-            <input type="password" name="address3" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
+            <input type="password" name="pass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Confirm Password</label>
-            <input type="password" name="address3" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
+            <input type="password" name="cpass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
 
         

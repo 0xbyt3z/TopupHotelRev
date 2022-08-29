@@ -13,16 +13,27 @@ require_once 'db_connect.php';
 	$address3 = $data->address3;
 	$pass = $data->pass;
 	$cpass = $data->cpass;
-	
+	$type = "customer";
+
 	try {
-		$stmt = $conn->prepare("INSERT INTO users (fname, lname,nic_or_br password,username) VALUES (?, ?, ?)");
-		$stmt->bind_param("sss", $fname, $lname, $email);
-		$stmt->execute();
-		header('Content-Type: application/json; charset=utf-8');
-		echo json_encode($data);
+		if($pass == $cpass){
+			$stmt = $link->prepare("INSERT INTO customer (f_name, l_name,contact,nic_or_br, addr_01,addr_02,addr_03,type,pass) VALUES (?, ?, ?,?,?,?,?,?,?)");
+			$pass = md5($pass);
+			$stmt->bind_param("sssssssss", $fname, $lname, $contact,$nic,$address1,$address2,$address3,$type,$pass);
+			$stmt->execute();
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode($data);
+		}else{
+			$error = "passwords do not match";
+			$status = 500;
+			header('Content-Type: application/json; charset=utf-8');
+			echo json_encode($error,$status);
+		}
 	} catch(Exception $th) {
+		echo $th;
 		$error = "Error occured";
 		$status = 500;
+		header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($error,$status);
 	}
 
