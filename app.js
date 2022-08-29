@@ -9,3 +9,8 @@ const handleCreditCard = () =>{
     string = string.match(/.{1,4}/g).join("-")
     event.target.value  = string
 }
+
+
+const handleSubmit =()=>{
+    alert()
+}

@@ -20,9 +20,10 @@ include "./components/Nav.php";
 
 ?>
 
+
 <div class="w-screen h-screen flex mt-36 justify-center">
     <div class="h-auto w-[30rem] flex flex-col">
-        <form>
+        <form onsubmit="handleSubmit();">
         <div class="w-full flex justify-end">
             <a href="travelagentsignup.php" class="flex items-center px-5 py-2 bg-cyan-500 font-bold text-white">Signup as a Travel Agent
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white ml-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
