@@ -120,28 +120,4 @@ include "./components/Nav.php";
         console.log(response)
     })
 
-
-    /*$('#cussignupform').on('submit', function(event) {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "php_action/check_login.php",
-            data: $("#cussignupform").serialize(),
-            async: false,
-            dataType: 'json',
-            success: function(response) {
-
-                if(response == true){
-
-                    window.location.href='home.php';
-
-                } else {
-
-                    alert('Signup Faild!');
-                    
-                }
-            }
-        });
-    });*/
-
 </script>

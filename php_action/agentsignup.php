@@ -7,19 +7,20 @@ require_once 'db_connect.php';
 	$fname = $data->fname;
 	$lname = $data->lname;
 	$contact = $data->contact;
-	$nic = $data->nic;
+	$aname = $data->aname;
+	$br = $data->br;
 	$address1 = $data->address1;
 	$address2 = $data->address2;
 	$address3 = $data->address3;
 	$pass = $data->pass;
 	$cpass = $data->cpass;
-	$type = "customer";
+	$type = "agent";
 
 	try {
 		if($pass == $cpass){
-			$stmt = $link->prepare("INSERT INTO customer (f_name, l_name,contact,nic_or_br, addr_01,addr_02,addr_03,type,pass) VALUES (?, ?, ?,?,?,?,?,?,?)");
+			$stmt = $link->prepare("INSERT INTO customer (company_name,f_name, l_name,contact,nic_or_br, addr_01,addr_02,addr_03,type,pass) VALUES (?, ?, ?,?,?,?,?,?,?)");
 			$pass = md5($pass);
-			$stmt->bind_param("sssssssss", $fname, $lname, $contact,$nic,$address1,$address2,$address3,$type,$pass);
+			$stmt->bind_param("ssssssssss",$aname, $fname, $lname, $contact,$nic,$address1,$address2,$address3,$type,$pass);
 			$stmt->execute();
 			header('Content-Type: application/json; charset=utf-8');
 			echo json_encode($data);

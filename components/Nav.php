@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION["user"]))
 {
   $script = substr($_SERVER['SCRIPT_NAME'],15);
-  if($script == "index.php" || $script == "cussignup.php" ){
+  if($script == "index.php" || $script == "cussignup.php" ||  $script == "travelagentsignup.php" ){
   }else{
     header("location:login.php");
 
