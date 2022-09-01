@@ -27,8 +27,8 @@ if(!isset($_SESSION["user"]))
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<nav class="px-2  bg-gray-900 border-gray-700">
-  <div class="container flex flex-wrap justify-between items-center mx-auto">
+<nav class="px-2 bg-gray-900 border-gray-700">
+  <div class="flex justify-between items-center mx-20">
 
     <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
       <ul
@@ -58,7 +58,7 @@ if(!isset($_SESSION["user"]))
           <!-- Dropdown menu -->
           <div id="dropdownDivider"
             class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
-            <ul class=" py-1 text-sm text-gray-700 text-gray-200" aria-labelledby="dropdownDividerButton">
+            <ul class=" py-1 text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
               <li>
                 <a href="reservation.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Reservation</a>
               </li>
@@ -92,7 +92,7 @@ if(!isset($_SESSION["user"]))
           <!-- Dropdown menu -->
           <div id="dropdownDivider"
             class="hidden peer-hover:block hover:block absolute z-10 w-56 bg-white  divide-y divide-gray-100 shadow ">
-            <ul class=" py-1 text-sm text-gray-700 text-gray-200" aria-labelledby="dropdownDividerButton">
+            <ul class=" py-1 text-sm text-gray-700 " aria-labelledby="dropdownDividerButton">
               <li>
                 <a href="room_allocation.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Room Allocation</a>
               </li>
@@ -124,7 +124,7 @@ if(!isset($_SESSION["user"]))
           <!-- Dropdown menu -->
           <div id="dropdownDivider"
             class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
-            <ul class=" py-1 text-sm text-gray-700 text-gray-200" aria-labelledby="dropdownDividerButton">
+            <ul class=" py-1 text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
               <li>
                 <a href="cussignup.php" class="block py-1 px-4 hover:bg-gray-100 text-black">New Customer</a>
               </li>
@@ -140,7 +140,7 @@ if(!isset($_SESSION["user"]))
         <!-- Customer end-->
         <li>
           <a href="#"
-            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 text-gray-400 ">Other</a>
+            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0  ">Other</a>
         </li>
       </ul>
     </div>
@@ -151,7 +151,7 @@ if(!isset($_SESSION["user"]))
       <!-- Dropdown menu -->
       <div id="avatardropdown"
         class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
-        <ul class="relative py-1 text-sm text-gray-700 text-gray-200 right-0" aria-labelledby="avatardropdown">
+        <ul class="relative py-1 text-sm text-gray-700 right-0" aria-labelledby="avatardropdown">
           <li>
             <a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black">Profile</a>
           </li>
