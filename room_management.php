@@ -45,7 +45,7 @@ include "./components/Nav.php";
                             <textarea name="" id="desc"
                                 class="border border-gray-300 w-full h-44 pl-2 outline-0 focus:border-gray-900"></textarea>
                         </div>
-                        <div class="w-full h-10 mt-20 flex">
+                        <div class="w-full h-10 mt-5 flex">
                             <button id="btncreate" class="w-24 bg-green-500 py-2 px-3 mr-5 text-white ">Create</button>
                             <button id="btnupdate" class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
                             <button id="btndelete" class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>

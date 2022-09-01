@@ -7,7 +7,7 @@
 	
 
 	try {
-		$sql = "SELECT * FROM room";
+		$sql = "select * from room inner join room_type on room.room_type_id = room_type.room_type_id";
         $result = $link->query($sql);
 
         if ($result->num_rows > 0) {

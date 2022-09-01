@@ -38,11 +38,7 @@
                     <div class="flex">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
                             <label for="" class="text-sm">Room Type</label>
-                            <select name="" id="" class="border border-gray-300 h-8 bg-transparent focus:outline-1 focus:outline-cyan-500">
-                                <option value="">Normal</option>
-                                <option value="">Luxury</option>
-                                <option value="">Extra Luxury</option>
-                            </select>
+                            <input type="text" name="rtname" id="rtname" class="bg-white border border-gray-300 h-8 outline-none pl-1" max="10" />
                         </div>
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
                             <label for="" class="text-sm">Payment Type</label>
@@ -84,61 +80,127 @@
 
                 <div class="max-h-96 overflow-auto overflow-x-hidden relative">
                     <table class="w-4/5 text-sm text-left text-gray-500 ml-10 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
-                            <tr>
-                                <th scope="col" class="py-3 px-3">
-                                    Room no
-                                </th>
-                                <th scope="col" class="py-3 px-3">
-                                    Per Night
-                                </th>
-                                <th scope="col" class="py-3 px-3">
-                                    Per Week
-                                </th>
-                                <th scope="col" class="py-3 px-3">
-                                    Per Monthly
-                                </th>
-                                <th scope="col" class="py-3 px-2">
-                                    Discount
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                Room no
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Type Name
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Guests
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                night
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                day
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                weekly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                monthly
+                            </th>
+                            <th scope="col" class="py-3 px-3 ">
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="parent">
+                        <!-- rows will programatically append here -->
+                        <script>
 
-                            <?php
-                            $pernightcharge = "500";
-                            $perweekcharge = "1500";
-                            $permonthcharge = "2000";
-                            $discount = "2%";
-                            for ($i = 0; $i < 20; $i++) {
-                                echo '
-                                        <tr class="bg-white border-b ">
-                                            <th scope="row"
-                                                class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
-                                                ' . $i . '
-                                            </th>
-                                            <td class="py-4 px-3">
-                                                ' . $pernightcharge . '
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            ' . $perweekcharge . '
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            ' . $permonthcharge . '
-                                            </td>
-                                            <td class="py-4 px-2">
-                                            ' . $discount . '
-                                            </td>
-                                        </tr>
-                                        ';
+                            const callback = (event) => {
+                                let parentid = event.target.parentNode.id;
+                                //set the id of the service id input
+                                document.getElementById("rtid").value = parentid.split(':')[1]
+
+                                //get the room type name values from the row
+                                document.getElementById("rtname").value =  event.target.parentNode.querySelectorAll("td")[1].innerHTML;
+                                
+
+                                //get the room type description from the row
+                                document.getElementById("desc").value =  event.target.parentNode.querySelectorAll("td")[3].innerHTML;
+                                
                             }
 
-                            ?>
-                        </tbody>
+                            window.addEventListener("load", async () => {
+                                let response = await fetch("php_action/get/room.php").then(res => res.json())
+                                //tbody is the parent
+                                let parent = document.getElementById("parent")
+                                response.map(item => {
+                                    //create nodes
+                                    let row = document.createElement("tr")
+                                    row.setAttribute("id", `id:${item.room_type_id}`)
+                                    row.onclick = function (event) { callback(event) };
+                                    let rno = document.createElement("td")
+                                    let rtname = document.createElement("td")
+                                    let gcount = document.createElement("td")
+                                    let desc = document.createElement("td")
+                                    let pncharge = document.createElement("td")
+                                    let pdcharge = document.createElement("td")
+                                    let wcharge = document.createElement("td")
+                                    let mcharge = document.createElement("td")
+                                    let status = document.createElement("td")
+
+                                    //add styles
+                                    row.className = "bg-white border-b"
+                                    rno.className = "py-4 px-3 font-medium text-gray-900"
+                                    rtname.className = "py-4 px-3"
+                                    gcount.className = "py-4 px-3"
+                                    desc.className = "py-4 px-3"
+                                    pncharge.className = "py-4 px-3"
+                                    pdcharge.className = "py-4 px-3"
+                                    wcharge.className = "py-4 px-3"
+                                    mcharge.className = "py-4 px-3"
+                                    //set colour depending on the status
+                                    switch (item.status) {
+                                        case "available":
+                                            status.className = "py-4 px-3 bg-green-300"
+                                            break;
+                                        case "reserved":
+                                            status.className = "py-4 px-3 bg-yellow-300"
+                                            break;
+                                        case "occupied":
+                                            status.className = "py-4 px-3 bg-yellow-300"
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
+                                    // set inner html
+                                    rno.innerHTML = item.room_no
+                                    rtname.innerHTML = item.room_type_name
+                                    gcount.innerHTML = item.maximum_guest
+                                    desc.innerHTML = item.description
+                                    pncharge.innerHTML = item.charges_per_night
+                                    pdcharge.innerHTML = item.charges_per_day
+                                    wcharge.innerHTML = item.charges_per_week
+                                    mcharge.innerHTML = item.charges_per_month
+                                    status.innerHTML = item.status
+
+                                    //append to the parent
+                                    row.append(rno)
+                                    row.appendChild(rtname)
+                                    row.appendChild(gcount)
+                                    //row.appendChild(desc)
+                                    row.appendChild(pncharge)
+                                    row.appendChild(pdcharge)
+                                    row.appendChild(wcharge)
+                                    row.appendChild(mcharge)
+                                    row.appendChild(status)
+
+                                    parent.appendChild(row)
+                                })
+                            })
+                        </script>
+                    </tbody>
                     </table>
                 </div>
                 <div class="w-full flex justify-end">
-                    <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Signup</button>
+                    <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Create</button>
                 </div>
 
             </div>

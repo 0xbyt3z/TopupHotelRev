@@ -112,7 +112,7 @@ include "./components/Nav.php";
             </div>
 
             <!--table -->
-            <div class="mt-10 h-auto w-[50rem] flex bg-yellow-300">
+            <div class="mt-10 h-96 w-[50rem] flex bg-yellow-300 overflow-auto overflow-x-hidden">
                 <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                         <tr>
