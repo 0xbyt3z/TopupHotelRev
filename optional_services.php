@@ -50,8 +50,8 @@ include "./components/Nav.php";
 
                         <div class="w-full h-10 mt-20 flex">
                             <button id="btncreate" class="w-24 bg-green-500 py-2 px-3 mr-5 text-white">Create</button>
-                            <button class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
-                            <button class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
+                            <button id="btnupdate" class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
+                            <button id="btndelete" class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
                         </div>
                     </div>
 
@@ -75,6 +75,13 @@ include "./components/Nav.php";
                         <tbody id="parent">
                             <!-- rows will programatically append here -->
                             <script>
+
+                                const callback = (event)=>{
+                                    let parent = event.target.parentNode.id;
+                                    //set the id of the service id input
+                                    document.getElementById("sid").value = parent.split(':')[1]
+                                }
+
                                 window.addEventListener("load",async()=>{
                                     let response = await fetch("php_action/get/optionalcharges.php").then(res=>res.json())
                                     //tbody is the parent
@@ -82,7 +89,8 @@ include "./components/Nav.php";
                                     response.map(item=>{
                                         //create nodes
                                         let row = document.createElement("tr")
-                                        row.setAttribute("scope","row")
+                                        row.setAttribute("id",`id:${item.vas_id}`)
+                                        row.onclick = function(event) { callback(event) };
                                         let id_td = document.createElement("td")
                                         let service_td = document.createElement("td")
                                         let charges_td = document.createElement("td")
@@ -123,6 +131,7 @@ include "./components/Nav.php";
 
 <script>
 
+    //handle create
     document.getElementById("btncreate").addEventListener("click", async (event) => {
         event.preventDefault()
         const data = {
@@ -131,6 +140,44 @@ include "./components/Nav.php";
         }
         console.log(data);
         const response = await fetch("php_action/create/optionalcharges.php", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+
+        console.log(response)
+    })
+
+    //handle update
+    document.getElementById("btnupdate").addEventListener("click", async (event) => {
+        event.preventDefault()
+        const data = {
+            sid: document.getElementById("sid").value,
+            service: document.getElementById("service").value,
+            charges: document.getElementById("charges").value
+        }
+        console.log(data);
+        const response = await fetch("php_action/update/optionalcharges.php", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.text())
+
+        console.log(response)
+    })
+
+    //handle delete
+    document.getElementById("btndelete").addEventListener("click", async (event) => {
+        event.preventDefault()
+        const data = {
+            sid: document.getElementById("sid").value,
+        }
+        console.log(data);
+        const response = await fetch("php_action/delete/optionalcharges.php", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
