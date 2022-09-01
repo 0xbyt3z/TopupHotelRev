@@ -7,7 +7,7 @@
     <title>Customer Signup | Hotel Reservation</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="./app.js"></script>
+    <script src="./app.js"></script>
 
     <link rel="stylesheet" href="style.css">
 
@@ -20,9 +20,11 @@ include "./components/Nav.php";
 
 ?>
 
+
+
 <div class="w-screen h-screen flex mt-36 justify-center">
     <div class="h-auto w-[30rem] flex flex-col">
-        <form>
+        <form id="cussignupform">
         <div class="w-full flex justify-end">
             <a href="travelagentsignup.php" class="flex items-center px-5 py-2 bg-cyan-500 font-bold text-white">Signup as a Travel Agent
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white ml-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -36,47 +38,92 @@ include "./components/Nav.php";
         <div class="flex">
         <div class="flex flex-col mt-4 w-1/2 mr-2">
             <label for="" class="text-sm">First Name</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500" required>
+            <input type="text" name="fname" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500">
         </div>
         <div class="flex flex-col mt-4 w-1/2 mr-2">
             <label for="" class="text-sm">Last Name</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500" required>
+            <input type="text" name="lname" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500">
         </div>
+        </div>
+
+        <div class="flex flex-col mt-4 mr-2">
+            <label for="" class="text-sm">Username</label>
+            <input type="text" name="username" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
 
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Contact Number</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="text" name="contact" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
 
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">NIC</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="text" name="nic"  class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
 
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Address Line - 1</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="text" name="address1" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Address Line - 2</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="text" name="address2" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Address Line - 3</label>
-            <input type="text" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="text" name="address3" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
+        </div>
+        <div class="flex flex-col mt-4 mr-2">
+            <label for="" class="text-sm">Password</label>
+            <input type="password" name="pass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
+        </div>
+        <div class="flex flex-col mt-4 mr-2">
+            <label for="" class="text-sm">Confirm Password</label>
+            <input type="password" name="cpass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
 
         
 
-        <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold">Signup</button>
+        <button type="submit" class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold">Signup</button>
 
         <div class="my-5 flex justify-between">
-            <span class="text-sm">Already have an account?<a href="" class="text-blue-500 mx-2">Login</a></span>
+            <span class="text-sm">Already have an account?<a href="login.php" class="text-blue-500 mx-2">Login</a></span>
         </div>
     </form>
     </div>
 </div>
     
 </body>
+
 </html>
+
+
+
+<script>
+
+    document.getElementById("cussignupform").addEventListener("submit",async (event)=>{
+        event.preventDefault()
+        const data = {
+            fname : event.target.fname.value,
+            lname : event.target.lname.value,
+            username : event.target.username.value,
+            contact : event.target.contact.value,
+            nic : event.target.nic.value,
+            address1 : event.target.address1.value,
+            address2 : event.target.address2.value,
+            address3 : event.target.address3.value,
+            pass : event.target.pass.value,
+            cpass : event.target.cpass.value,
+        }
+        const response = await fetch("php_action/signupcustomer.php",{
+            method:"POST",  
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res=>res.text())
+
+        console.log(response)
+    })
+
+</script>
