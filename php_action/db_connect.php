@@ -1,8 +1,8 @@
 <?php 	
 
 $localhost = "127.0.0.1";
-$username = "calicoco";
-$password = "123456";
+$username = "root";
+$password = "$3h2vABC";
 $dbname = "hotel";
 
 //Connect and select the database

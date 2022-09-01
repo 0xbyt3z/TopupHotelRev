@@ -1,1 +1,3 @@
-commit.bat
+git.bat
+push.bat
+/php_action/db_connect.php
