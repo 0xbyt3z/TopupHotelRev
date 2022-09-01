@@ -24,36 +24,121 @@ include "./components/Nav.php";
 
     <div class="w-screen h-full flex mt-36 justify-center">
         <form>
-            <span class="text-4xl font-bold mb-10">Room Category Registration</span>
-            <div class="h-auto w-[30rem] flex ">
-                <!--left-->
-                <div class="w-full mt-12 h-auto ">
-                    <div class="flex flex-col mt-4 w-1/2 mr-2">
-                        <label for="" class="text-sm">Services</label>
-                        <input type="text"
-                            class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900" required>
-                    </div>
-                    <div class="flex flex-col mt-4 w-1/2 mr-2">
-                        <label for="" class="text-sm">Charges</label>
-                        <div class="flex border border-gray-300 group-focus-within:border-gray-900">
-                            <span class="text-sm  m-2 mr-0 px-1">Rs.</span>
-                            <input type="text" class="h-8 w-full  outline-0 pl-2 group-focus-within:border-gray-900"
-                                required>
+            <div class="flex">
+                <div class="h-auto w-[30rem]">
+                    <span class="text-4xl font-bold mb-10">Room Category Registration</span>
+                    <!--left-->
+                    <div class="w-full mt-12 h-auto ">
+                        <div class="flex flex-col mt-4 w-1/2 mr-2">
+                            <label for="" class="text-sm">Services ID</label>
+                            <input id="sid" type="text" name="sid"
+                                class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900" required>
+                        </div>
+                        <div class="flex flex-col mt-4 w-1/2 mr-2">
+                            <label for="" class="text-sm">Services</label>
+                            <input id="service" type="text" name="service"
+                                class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900" required>
+                        </div>
+                        <div class="flex flex-col mt-4 w-1/2 mr-2">
+                            <label for="" class="text-sm">Charges</label>
+                            <div class="flex border border-gray-300 group-focus-within:border-gray-900">
+                                <span class="text-sm  m-2 mr-0 px-1">Rs.</span>
+                                <input id="charges" type="text" name="charges"
+                                    class="h-8 w-full  outline-0 pl-2 group-focus-within:border-gray-900" required>
+                            </div>
+                        </div>
+
+                        <div class="w-full h-10 mt-20 flex">
+                            <button id="btncreate" class="w-24 bg-green-500 py-2 px-3 mr-5 text-white">Create</button>
+                            <button class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
+                            <button class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
                         </div>
                     </div>
-                   
-                    <div class="w-full h-10 mt-20 flex">
-                        <button class="w-24 bg-green-500 py-2 px-3 mr-5 text-white ">Create</button>
-                        <button class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
-                        <button class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
-                    </div>
+
+                </div>
+                <!-- table -->
+                <div class="h-96 max-h-96 w-[30rem] flex overflow-y-scroll">
+                    <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                            <tr>
+                                <th scope="col" class="py-3 px-3">
+                                    ID
+                                </th>
+                                <th scope="col" class="py-3 px-3">
+                                    Serivice
+                                </th>
+                                <th scope="col" class="py-3 px-3">
+                                    Charges
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="parent">
+                            <!-- rows will programatically append here -->
+                            <script>
+                                window.addEventListener("load",async()=>{
+                                    let response = await fetch("php_action/get/optionalcharges.php").then(res=>res.json())
+                                    //tbody is the parent
+                                    let parent = document.getElementById("parent")
+                                    response.map(item=>{
+                                        //create nodes
+                                        let row = document.createElement("tr")
+                                        row.setAttribute("scope","row")
+                                        let id_td = document.createElement("td")
+                                        let service_td = document.createElement("td")
+                                        let charges_td = document.createElement("td")
+
+                                        //add styles
+                                        row.className = "bg-white border-b"
+                                        id_td.className = "py-4 px-3 font-medium text-gray-900"
+                                        service_td.className = "py-4 px-3"
+                                        charges_td.className = "py-4 px-3"
+
+                                        // set inner html
+                                        id_td.innerHTML = item.vas_id
+                                        service_td.innerHTML = item.service
+                                        charges_td.innerHTML = item.charges
+
+                                        //append to the parent
+                                        row.append(id_td)
+                                        row.appendChild(service_td)
+                                        row.appendChild(charges_td)
+                                        
+                                        
+                                        parent.appendChild(row)
+                                    })
+                                })
+                            </script>
+                        </tbody>
+
+                    </table>
                 </div>
 
             </div>
-
         </form>
     </div>
 
 </body>
 
 </html>
+
+<script>
+
+    document.getElementById("btncreate").addEventListener("click", async (event) => {
+        event.preventDefault()
+        const data = {
+            service: document.getElementById("service").value,
+            charges: document.getElementById("charges").value
+        }
+        console.log(data);
+        const response = await fetch("php_action/create/optionalcharges.php", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.text())
+
+        console.log(response)
+    })
+
+</script>
