@@ -50,7 +50,7 @@
             <div class="relative mt-64 w-screen flex items-center justify-end">
 
               <div class="animate-bounce w-12 h-12 mr-44 text-white">
-              <img class="w-full h-full" src="https://img.icons8.com/glyph-neue/64/000000/circled-chevron-down.png"/>
+              <img class="w-full h-full" src="https://img.icons8.com/glyph-neue/64/ffffff/circled-chevron-down.png"/>
 
               </div>
 
