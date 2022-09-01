@@ -47,6 +47,11 @@ include "./components/Nav.php";
         </div>
 
         <div class="flex flex-col mt-4 mr-2">
+            <label for="" class="text-sm">Username</label>
+            <input type="text" name="username" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
+        </div>
+
+        <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Contact Number</label>
             <input type="text" name="contact" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 ">
         </div>
@@ -101,6 +106,7 @@ include "./components/Nav.php";
         const data = {
             fname : event.target.fname.value,
             lname : event.target.lname.value,
+            username : event.target.username.value,
             contact : event.target.contact.value,
             nic : event.target.nic.value,
             address1 : event.target.address1.value,
