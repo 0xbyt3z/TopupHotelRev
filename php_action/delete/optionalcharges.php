@@ -11,12 +11,12 @@
         $stmt->bind_param("i", $sid);
         $stmt->execute();
         header('Content-Type: application/json; charset=utf-8');
-        echo "Done";
+        echo "success";
 	} catch(Exception $th) {
 		echo $th;
 		$error = "Error occured";
 		$status = 500;
 		header('Content-Type: application/json; charset=utf-8');
-		echo "Error";
+		echo "success";
 	}
 ?>

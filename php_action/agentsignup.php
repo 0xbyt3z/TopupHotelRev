@@ -6,6 +6,7 @@ require_once 'db_connect.php';
 	$data = json_decode(file_get_contents('php://input'));
 	$fname = $data->fname;
 	$lname = $data->lname;
+	$username = $data->username;
 	$contact = $data->contact;
 	$aname = $data->aname;
 	$br = $data->br;
@@ -18,12 +19,15 @@ require_once 'db_connect.php';
 
 	try {
 		if($pass == $cpass){
-			$stmt = $link->prepare("INSERT INTO customer (company_name,f_name, l_name,contact,nic_or_br, addr_01,addr_02,addr_03,type,pass) VALUES (?, ?, ?,?,?,?,?,?,?,?)");
-			$pass = md5($pass);
-			$stmt->bind_param("ssssssssss",$aname, $fname, $lname, $contact,$br,$address1,$address2,$address3,$type,$pass);
-			$stmt->execute();
-			header('Content-Type: application/json; charset=utf-8');
-			echo json_encode($data);
+			$sql = "INSERT INTO users (f_name, l_name,password,user_name,type_id) VALUES ('".$fname."','".$lname."' ,'".$pass."','".$username."','2')";
+			
+			if (mysqli_query($link, $sql)) {
+				$last_id = mysqli_insert_id($link);
+			
+				$customerquery = "INSERT INTO customer (f_name, l_name,company_name,nic_or_br,addr_01,addr_02,addr_03,type,user_id) VALUES ('".$fname."','".$lname."' ,'".$br."','".$nic."','".$address1."','".$address2."', '".$address3."','".$type."','".$last_id."')";
+				mysqli_query($link,$customerquery);
+				echo "success";
+			}
 		}else{
 			$error = "passwords do not match";
 			$status = 500;

@@ -6,7 +6,6 @@ if(!isset($_SESSION["user"]))
   if($script == "index.php" || $script == "cussignup.php" ||  $script == "travelagentsignup.php" ){
   }else{
     header("location:login.php");
-
   }
 }
 

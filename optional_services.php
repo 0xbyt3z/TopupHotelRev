@@ -53,6 +53,7 @@ include "./components/Nav.php";
                             <button id="btnupdate" class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
                             <button id="btndelete" class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
                         </div>
+                        
                     </div>
 
                 </div>
@@ -82,10 +83,16 @@ include "./components/Nav.php";
                                     document.getElementById("sid").value = parent.split(':')[1]
                                 }
 
-                                window.addEventListener("load",async()=>{
+                                window.addEventListener("load",()=>{
+                                    populateDataGrid()
+                                })
+
+                                const populateDataGrid = async ()=>{
+
                                     let response = await fetch("php_action/get/optionalcharges.php").then(res=>res.json())
                                     //tbody is the parent
                                     let parent = document.getElementById("parent")
+                                    parent.innerHTML = ""
                                     response.map(item=>{
                                         //create nodes
                                         let row = document.createElement("tr")
@@ -114,7 +121,7 @@ include "./components/Nav.php";
                                         
                                         parent.appendChild(row)
                                     })
-                                })
+                                }
                             </script>
                         </tbody>
 
@@ -123,6 +130,11 @@ include "./components/Nav.php";
 
             </div>
         </form>
+
+    </div>
+
+    <div id="alertparent" class="absolute w-screen h-auto bottom-0">
+        
     </div>
 
 </body>
@@ -145,9 +157,14 @@ include "./components/Nav.php";
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(res => res.json())
+        }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Inserted","Successfully created the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to create the records","error")
+        }
+        populateDataGrid();
     })
 
     //handle update
@@ -167,7 +184,12 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Updated","Successfully updated the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to update the records","error")
+        }
+        populateDataGrid();
     })
 
     //handle delete
@@ -185,7 +207,12 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Deleted","Successfully deleted the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to delete the records","error")
+        }
+        populateDataGrid();
     })
 
 </script>

@@ -66,15 +66,10 @@ if(isset($_SESSION["user"]))
             async: false,
             dataType: 'json',
             success: function(response) {
-
                 if(response == true){
-
                     window.location.href='home.php';
-
                 } else {
-
                     alert('Login Faild!');
-                    
                 }
             }
         });
