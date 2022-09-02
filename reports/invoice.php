@@ -17,12 +17,14 @@
 <body>
 
 <div id="parent">
-
+<div class="w-screen h-screen bg-yellow-500">
+s
+</div>
 </div>
 
 
 <?php
-require_once 'dompdf/autoload.inc.php';
+require_once '../dompdf/autoload.inc.php';
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 

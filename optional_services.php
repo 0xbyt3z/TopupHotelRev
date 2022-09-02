@@ -26,7 +26,7 @@ include "./components/Nav.php";
         <form>
             <div class="flex">
                 <div class="h-auto w-[30rem]">
-                    <span class="text-4xl font-bold mb-10">Room Category Registration</span>
+                    <span class="text-4xl font-bold mb-10">Optional Charges</span>
                     <!--left-->
                     <div class="w-full mt-12 h-auto ">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
