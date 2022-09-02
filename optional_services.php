@@ -62,12 +62,12 @@ include "./components/Nav.php";
                     <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
-                                <th scope="col" class="py-3 px-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="py-3 px-3">
-                                    Serivice
-                                </th>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Serivice
+                            </th>
                                 <th scope="col" class="py-3 px-3">
                                     Charges
                                 </th>
@@ -78,9 +78,14 @@ include "./components/Nav.php";
                             <script>
 
                                 const callback = (event)=>{
-                                    let parent = event.target.parentNode.id;
+                                    let parent = event.target.parentNode;
+                                    let parentid = event.target.parentNode.id;
                                     //set the id of the service id input
-                                    document.getElementById("sid").value = parent.split(':')[1]
+                                    document.getElementById("sid").value = parentid.split(':')[1]
+                                    
+                                    document.getElementById("service").value  = parent.querySelectorAll("td")[1].innerHTML
+                                    document.getElementById("charges").value  = parent.querySelectorAll("td")[2].innerHTML
+
                                 }
 
                                 window.addEventListener("load",()=>{
