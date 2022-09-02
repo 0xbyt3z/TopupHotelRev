@@ -20,7 +20,7 @@ require_once 'db_connect.php';
 		if($pass == $cpass){
 			//first insert the user record and then enter the customer record.
 
-			$sql = "INSERT INTO users (f_name, l_name,password,user_name,type_id) VALUES ('".$fname."','".$lname."' ,'".$pass."','".$username."','3')";
+			$sql = "INSERT INTO users (f_name, l_name,password,user_name,type_id) VALUES ('".$fname."','".$lname."' ,'".md5($pass)."','".$username."','3')";
 			
 			if (mysqli_query($link, $sql)) {
 				$last_id = mysqli_insert_id($link);
