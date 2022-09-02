@@ -19,13 +19,12 @@
 		$stmt = $link->prepare("update  room_type set room_type_name=?,maximum_guest=?,description=?,charges_per_night=?,charges_per_day=?, charges_per_week=?,charges_per_month=?,discount=? where room_type_id=?");
         $stmt->bind_param("sisdddddi", $rtname,$gcount,$desc,$pncharge,$pdcharge,$wcharge,$mcharge,$disc,$rtid);
         $stmt->execute();
-        header('Content-Type: application/json; charset=utf-8');
-        echo "Done";
+        echo "success";
 	} catch(Exception $th) {
 		echo $th;
 		$error = "Error occured";
 		$status = 500;
 		header('Content-Type: application/json; charset=utf-8');
-		echo "Error";
+		echo "error";
 	}
 ?>

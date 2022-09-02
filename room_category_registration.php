@@ -244,9 +244,13 @@ include "./components/Nav.php";
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(res => res.json())
+        }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Inserted","Successfully created the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to create the records","error")
+        }
     })
 
     //handle update
@@ -271,7 +275,11 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Inserted","Successfully created the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to create the records","error")
+        }
     })
 
     //handle delete
@@ -289,7 +297,11 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Inserted","Successfully created the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to create the records","error")
+        }
     })
 
 </script>

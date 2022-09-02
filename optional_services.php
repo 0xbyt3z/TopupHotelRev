@@ -133,9 +133,6 @@ include "./components/Nav.php";
 
     </div>
 
-    <div id="alertparent" class="absolute w-screen h-auto bottom-0">
-        
-    </div>
 
 </body>
 

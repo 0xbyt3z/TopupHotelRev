@@ -1,7 +1,7 @@
 const forgotpass = () => {
   alert("forgot password");
 }
-
+ 
 
 const handleCreditCard = () => {
   let element = event.target
@@ -53,7 +53,6 @@ const showAlert = (t, m, status) => {
     document.body.removeChild(parent)
   }, 3000);
 }
-
 
 
 
