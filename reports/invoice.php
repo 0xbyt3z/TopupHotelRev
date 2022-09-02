@@ -31,13 +31,12 @@ echo "<script>localStorage.theme</script>";
 </div>
 
 <script>
-'var name = <?php sample($name); ?>';
+var name = '<?php sample($name); ?>';
 </script>'
 
 
 <?php
 
-functio
 
 /*
 require_once '../lib/dompdf/autoload.inc.php';
