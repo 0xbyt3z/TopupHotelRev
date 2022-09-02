@@ -100,7 +100,6 @@ include "./components/Nav.php";
 </html>
 
 
-
 <script>
 
     document.getElementById("agentsignupform").addEventListener("submit",async (event)=>{
@@ -126,7 +125,7 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res=>res.text())
 
-        console.log(response)
+        
     })
 
 </script>
