@@ -23,11 +23,16 @@
     ?>
 
     <div class="w-screen h-full flex mt-36 justify-center">
+<<<<<<< HEAD
         <form method="post" id="add_reservation">
+=======
+        <form method="">
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155
             <span class="text-4xl font-bold mb-10">Block Reservation</span>
             <div class="h-auto w-[70rem] flex ">
                 <!--left-->
                 <div class="w-1/3 mt-12 h-auto ">
+<<<<<<< HEAD
                     <div class="grid grid-cols-2 gap-2">
                         <div class="mr-4 group">
                             <label for="" class="text-sm">Traval Agent</label>
@@ -38,6 +43,14 @@
                         <div class="mr-4 group">
 
                         </div>
+=======
+                <div class="grid grid-cols-2 gap-2">
+                                <div class="mr-4 group">
+                                    <label for="" class="text-sm">Travel Agent</label>
+                                    <input type="text"
+                                        class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900"
+                                        required>
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155
 
                         <div class="mr-4 group col-span-2">
                             <label for="" class="text-sm">Card Holder Name</label>
@@ -50,6 +63,7 @@
                                 <input type="text" name="crdno" id="crdno" oninput="handleCreditCard();" class="h-8 w-full  outline-0 group-focus-within:border-gray-900" required>
                                 <span class="text-xs  m-2 mr-0 px-1 bg-slate-400 text-white">Visa</span>
                             </div>
+<<<<<<< HEAD
                         </div>
                         <div class="mr-4 group">
                             <label for="" class="text-sm">Expiration</label>
@@ -87,11 +101,14 @@
                             <button type='button' class="w-24 mx-3 bg-cyan-500 py-2 px-3 my-3 text-white font-bold " id="SubBtn">Submit</button>
                         </div>
                     </div>
+=======
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155
                 </div>
 
 
                 <!--right-->
                 <div class="w-2/3 mt-12 h-auto border-0 border-l-[1px] border-l-gray-500">
+<<<<<<< HEAD
                     <table class="w-full max-w-[63vw] text-sm text-left text-gray-500" id="tblData">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
@@ -124,11 +141,49 @@
                         </tbody>
 
                     </table>
+=======
+                <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Type Name
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Guests
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                night
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                day
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                weekly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                monthly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-green-100">
+                                disc
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="parent">
+                        <!-- rows will programatically append here -->
+                        
+                    </tbody>
+
+                </table>
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155
                 </div>
 
             </div>
 
             <!--table -->
+<<<<<<< HEAD
             <div class="mt-10 h-auto border-0 border-l-[1px] border-l-gray-500">
                 <input type="hidden" name="addrow_cnt" id="addrow_cnt" value="0">
                 <table class="w-full max-w-[63vw] text-sm text-left text-gray-500" id="tmp_tblData">
@@ -148,6 +203,43 @@
                     <tbody>
                         <!-- rows will programatically append here -->
                     </tbody>
+=======
+            <div class="mt-10 h-96 w-[50rem] flex overflow-auto overflow-x-hidden">
+                <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Type Name
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Guests
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                night
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                day
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                weekly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                monthly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-green-100">
+                                disc
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="parent">
+                        <!-- rows will programatically append here -->
+                        
+                    </tbody>
+
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155
                 </table>
             </div>
 
@@ -158,6 +250,7 @@
 
 </html>
 
+<<<<<<< HEAD
 <script>
     $().ready(function() {
 
@@ -309,3 +402,5 @@
 
     });
 </script>
+=======
+>>>>>>> b79f3721fe0677a39eff427cc52c91cec0733155

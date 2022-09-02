@@ -20,7 +20,7 @@ include "./components/Nav.php";
 
 ?>
 
-<div class="w-screen h-screen flex mt-36 justify-center">
+<div class="w-screen h-screen flex mt-10 justify-center">
     <div class="h-auto w-[30rem] flex flex-col">
         <form id="agentsignupform">
         <div class="w-full flex justify-end">
@@ -78,11 +78,11 @@ include "./components/Nav.php";
 
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Passsword</label>
-            <input type="text" name="pass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="password" name="pass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
         </div>
         <div class="flex flex-col mt-4 mr-2">
             <label for="" class="text-sm">Confirm Password</label>
-            <input type="text" name="cpass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
+            <input type="password" name="cpass" class="h-8 w-full border border-gray-300 focus:outline-1 focus:outline-cyan-500 " required>
         </div>
 
         
@@ -100,7 +100,6 @@ include "./components/Nav.php";
 </html>
 
 
-
 <script>
 
     document.getElementById("agentsignupform").addEventListener("submit",async (event)=>{
@@ -108,6 +107,7 @@ include "./components/Nav.php";
         const data = {
             fname : event.target.fname.value,
             lname : event.target.lname.value,
+            username : event.target.username.value,
             contact : event.target.contact.value,
             aname : event.target.aname.value,
             br : event.target.br.value,
@@ -125,7 +125,7 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res=>res.text())
 
-        console.log(response)
+        
     })
 
 </script>

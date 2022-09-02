@@ -26,7 +26,7 @@ include "./components/Nav.php";
         <form>
             <div class="flex">
                 <div class="h-auto w-[30rem]">
-                    <span class="text-4xl font-bold mb-10">Room Category Registration</span>
+                    <span class="text-4xl font-bold mb-10">Optional Charges</span>
                     <!--left-->
                     <div class="w-full mt-12 h-auto ">
                         <div class="flex flex-col mt-4 w-1/2 mr-2">
@@ -53,6 +53,7 @@ include "./components/Nav.php";
                             <button id="btnupdate" class="w-24 bg-yellow-500 py-2 px-3 mr-5 text-white ">Update</button>
                             <button id="btndelete" class="w-24 bg-red-500 py-2 px-3 mr-5 text-white ">Delete</button>
                         </div>
+                        
                     </div>
 
                 </div>
@@ -61,12 +62,12 @@ include "./components/Nav.php";
                     <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
                             <tr>
-                                <th scope="col" class="py-3 px-3">
-                                    ID
-                                </th>
-                                <th scope="col" class="py-3 px-3">
-                                    Serivice
-                                </th>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Serivice
+                            </th>
                                 <th scope="col" class="py-3 px-3">
                                     Charges
                                 </th>
@@ -77,15 +78,26 @@ include "./components/Nav.php";
                             <script>
 
                                 const callback = (event)=>{
-                                    let parent = event.target.parentNode.id;
+                                    let parent = event.target.parentNode;
+                                    let parentid = event.target.parentNode.id;
                                     //set the id of the service id input
-                                    document.getElementById("sid").value = parent.split(':')[1]
+                                    document.getElementById("sid").value = parentid.split(':')[1]
+                                    
+                                    document.getElementById("service").value  = parent.querySelectorAll("td")[1].innerHTML
+                                    document.getElementById("charges").value  = parent.querySelectorAll("td")[2].innerHTML
+
                                 }
 
-                                window.addEventListener("load",async()=>{
+                                window.addEventListener("load",()=>{
+                                    populateDataGrid()
+                                })
+
+                                const populateDataGrid = async ()=>{
+
                                     let response = await fetch("php_action/get/optionalcharges.php").then(res=>res.json())
                                     //tbody is the parent
                                     let parent = document.getElementById("parent")
+                                    parent.innerHTML = ""
                                     response.map(item=>{
                                         //create nodes
                                         let row = document.createElement("tr")
@@ -111,10 +123,9 @@ include "./components/Nav.php";
                                         row.appendChild(service_td)
                                         row.appendChild(charges_td)
                                         
-                                        
                                         parent.appendChild(row)
                                     })
-                                })
+                                }
                             </script>
                         </tbody>
 
@@ -123,7 +134,9 @@ include "./components/Nav.php";
 
             </div>
         </form>
+
     </div>
+
 
 </body>
 
@@ -145,9 +158,14 @@ include "./components/Nav.php";
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(res => res.json())
+        }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Inserted","Successfully created the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to create the records","error")
+        }
+        populateDataGrid();
     })
 
     //handle update
@@ -167,7 +185,12 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Updated","Successfully updated the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to update the records","error")
+        }
+        populateDataGrid();
     })
 
     //handle delete
@@ -185,7 +208,12 @@ include "./components/Nav.php";
             body: JSON.stringify(data)
         }).then(res => res.text())
 
-        console.log(response)
+        if(response === "success"){
+            showAlert("Deleted","Successfully deleted the records","success")
+        }else{
+            showAlert("Error","Error Occured when trying to delete the records","error")
+        }
+        populateDataGrid();
     })
 
 </script>

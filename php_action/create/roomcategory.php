@@ -18,8 +18,7 @@
 		$stmt = $link->prepare("INSERT INTO room_type (room_type_name,maximum_guest,description,charges_per_night,charges_per_day, charges_per_week,charges_per_month,discount) VALUES (?,?,?,?,?,?,?,?)");
         $stmt->bind_param("sisddddd", $rtname,$gcount,$desc,$pncharge,$pdcharge,$wcharge,$mcharge,$disc);
         $stmt->execute();
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($data);
+		echo "success";
 	} catch(Exception $th) {
 		echo $th;
 		$error = "Error occured";
