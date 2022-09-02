@@ -2,34 +2,33 @@
 <html lang="en" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Signup | Hotel Reservation</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/flowbite@1.5.2/dist/datepicker.js"></script>
     <script defer src="./app.js"></script>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 
 <body>
+
     <?php
 include "./components/Nav.php";
 
 ?>
 
-    <div class="w-screen h-screen flex mt-24 justify-center">
-        <form method="post" action="">
-            <div class="flex flex-col w-[70vw]">
-                <div class="w-full flex">
-                    <div class="w-1/3">
-                        <div class="h-auto flex flex-col">
-                            <span class="text-4xl font-bold mb-10">Block Reservation</span>
-
-                            <!--grid-->
-                            <div class="grid grid-cols-2 gap-2">
+    <div class="w-screen h-full flex mt-36 justify-center">
+        <form method="">
+            <span class="text-4xl font-bold mb-10">Block Reservation</span>
+            <div class="h-auto w-[70rem] flex ">
+                <!--left-->
+                <div class="w-1/3 mt-12 h-auto ">
+                <div class="grid grid-cols-2 gap-2">
                                 <div class="mr-4 group">
                                     <label for="" class="text-sm">Travel Agent</label>
                                     <input type="text"
@@ -98,136 +97,93 @@ include "./components/Nav.php";
                                         class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">ADD</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="w-2/3 max-h-96 mt-24 overflow-auto overflow-x-hidden">
-
-                        <div class="relative max-h-96">
-                        <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
-                            <tr>
-                                    <th scope="col" class="py-3 px-3">
-                                        Room no
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Night
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Week
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Monthly
-                                    </th>
-                                    <th scope="col" class="py-3 px-2">
-                                        Discount
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php
-                            $pernightcharge = "500";
-                            $perweekcharge = "1500";
-                            $permonthcharge = "2000";
-                            $discount = "2%";
-                            for ($i=0; $i < 20; $i++) { 
-                                echo '
-                                        <tr class="bg-white border-b ">
-                                            <th scope="row"
-                                                class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
-                                                '.$i.'
-                                            </th>
-                                            <td class="py-4 px-3">
-                                                '.$pernightcharge.'
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            '.$perweekcharge.'
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            '.$permonthcharge.'
-                                            </td>
-                                            <td class="py-4 px-2">
-                                            '.$discount.'
-                                            </td>
-                                        </tr>
-                                        ';
-                            }
-                            
-                            ?>
-                            </tbody>
-
-                            </table>
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="w-full max-h-96 overflow-auto overflow-x-hidden">
-                    <div class="w-full max-h-96">
-                        <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
-                                <tr>
-                                    <th scope="col" class="py-3 px-3">
-                                        Room no
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Night
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Week
-                                    </th>
-                                    <th scope="col" class="py-3 px-3">
-                                        Per Monthly
-                                    </th>
-                                    <th scope="col" class="py-3 px-2">
-                                        Discount
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                            $pernightcharge = "500";
-                            $perweekcharge = "1500";
-                            $permonthcharge = "2000";
-                            $discount = "2%";
-                            for ($i=0; $i < 20; $i++) { 
-                                echo '
-                                        <tr class="bg-white border-b ">
-                                            <th scope="row"
-                                                class="py-4 px-3 font-medium text-gray-900 whitespace-nowrap">
-                                                '.$i.'
-                                            </th>
-                                            <td class="py-4 px-3">
-                                                '.$pernightcharge.'
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            '.$perweekcharge.'
-                                            </td>
-                                            <td class="py-4 px-3">
-                                            '.$permonthcharge.'
-                                            </td>
-                                            <td class="py-4 px-2">
-                                            '.$discount.'
-                                            </td>
-                                        </tr>
-                                        ';
-                            }
-                            
-                            ?>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
 
-                <!--submit button-->
-                <div class="w-full flex justify-end">
-                    <button class="w-24 bg-cyan-500 py-2 px-3 my-3 text-white font-bold mr-32">Create</button>
+
+                <!--right-->
+                <div class="w-2/3 mt-12 h-auto border-0 border-l-[1px] border-l-gray-500">
+                <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Type Name
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Guests
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                night
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                day
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                weekly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                monthly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-green-100">
+                                disc
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="parent">
+                        <!-- rows will programatically append here -->
+                        
+                    </tbody>
+
+                </table>
                 </div>
+
             </div>
-        </form>
 
+            <!--table -->
+            <div class="mt-10 h-96 w-[50rem] flex overflow-auto overflow-x-hidden">
+                <table class="w-full max-w-[63vw] text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                ID
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Type Name
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Guests
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                night
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                day
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                weekly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-pink-100">
+                                monthly
+                            </th>
+                            <th scope="col" class="py-3 px-3 bg-green-100">
+                                disc
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="parent">
+                        <!-- rows will programatically append here -->
+                        
+                    </tbody>
+
+                </table>
+            </div>
+
+        </form>
     </div>
+
 </body>
 
 </html>
+

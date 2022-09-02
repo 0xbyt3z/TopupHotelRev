@@ -123,7 +123,6 @@ include "./components/Nav.php";
                                         row.appendChild(service_td)
                                         row.appendChild(charges_td)
                                         
-                                        
                                         parent.appendChild(row)
                                     })
                                 }
