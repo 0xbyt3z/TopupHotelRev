@@ -92,15 +92,15 @@ if(!isset($_SESSION["user"]))
           <div id="dropdownDivider"
             class="hidden peer-hover:block hover:block absolute z-10 w-56 bg-white  divide-y divide-gray-100 shadow ">
             <ul class=" py-1 text-sm text-gray-700 " aria-labelledby="dropdownDividerButton">
-              <li>
+              <!-- <li>
                 <a href="room_allocation.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Room Allocation</a>
-              </li>
+              </li> -->
               <li>
                 <a href="room_management.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Room Management</a>
               </li>
               <li>
                 <a href="room_category_registration.php" class="block py-1 px-4 hover:bg-gray-100 text-black">Room
-                  Category Allocation</a>
+                  Category Registration</a>
               </li>
             </ul>
 
@@ -137,10 +137,10 @@ if(!isset($_SESSION["user"]))
           </div>
         </li>
         <!-- Customer end-->
-        <li>
+        <!-- <li>
           <a href="#"
             class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0  ">Other</a>
-        </li>
+        </li> -->
       </ul>
     </div>
 

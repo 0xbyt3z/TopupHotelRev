@@ -22,7 +22,7 @@ include "./components/Nav.php";
 
 ?>
 
-    <div class="w-screen h-full flex mt-36 justify-center">
+    <div class="w-screen h-full flex mt-10 justify-center">
         <form method="">
             <span class="text-4xl font-bold mb-10">Room Category Registration</span>
             <div class="h-auto w-[50rem] flex ">
