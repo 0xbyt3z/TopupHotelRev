@@ -24,20 +24,10 @@
                         <span>(+94) 73 345 3633 / (+94) 73 345 3633 </span>
                     </div>
                     <div class="w-1/2 h-full flex flex-col items-end">
-                        <span class="text-3xl font-bold">Occupancy Report</span>
+                        <span class="text-3xl font-bold">Revenue</span>
                     </div>
                 </div>
 
-                <!--Invoice Description-->
-                <div class="w-full h-auto flex text-sm mt-10">
-                    <div class="w-1/3 h-auto flex flex-col">
-                        <span class="font-bold mb-2 text-base">Details</span>
-                        <span><span class="font-semibold">Report as on</span> : 2022-08-20</span>
-                        <span><span class="font-semibold">Total Occupied Rooms</span> : <?php echo $_GET['toccupied'] ?></span>
-                        <span><span class="font-semibold">Total Free Rooms</span> : <?php echo $_GET['tfree'] ?></span>
-                    </div>
-
-                </div>
 
                 <!--package table-->
                 <div class="w-full h-auto flex flex-col text-sm mt-10">
@@ -46,65 +36,89 @@
                             <thead class="text-sm text-gray-700  bg-gray-300 ">
                                 <tr>
                                     <th scope="col" class="py-3 pr-9 pl-3">
-                                        Room No
+                                        Reservation ID
                                     </th>
                                     <th scope="col" class="py-3 pr-12">
                                         Type
                                     </th>
                                     <th scope="col" class="py-3 pr-12">
-                                        Paid
+                                        Date
                                     </th>
                                     <th scope="col" class="py-3 pl-9 pr-3 text-right">
-                                        Checkout
-                                    </th>
-                                    <th scope="col" class="py-3 pl-9 pr-3 text-right">
-                                        Checkout
+                                        Payment
                                     </th>
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="bg-white border-b text-sm ">
-                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        R01
-                                    </th>
-                                    <td class="py-2 pr-12">
-                                        Luxury
-                                    </td>
-                                    <td class="py-2 pr-12">
-                                        No
-                                    </td>
-                                    
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-10
-                                    </td>
+                            <tbody id="parent">
 
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-10
-                                    </td>
+                                <script>
+                                    let _total = 0
+                                </script>
 
-                                </tr>
-                                <tr class="bg-white border-b ">
-                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        R02
-                                    </th>
-                                    <td class="py-2 pr-12">
-                                    Deluxe
-                                    </td>
-                                    
-                                    <td class="py-2 pr-12">
-                                        Yes
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-12
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-12
-                                    </td>
+                                <script>
 
-                                </tr>
+                                    window.addEventListener("load", () => {
+                                        populateDataGrid()
+                                    })
 
-                                
+                                    const populateDataGrid = async () => {
+
+                                        let response = await fetch("../php_action/get/revenue.php").then(res => res.json())
+                                        //tbody is the parent
+                                        let parent = document.getElementById("parent")
+                                        parent.innerHTML = ""
+                                        response.map(item => {
+                                            //create nodes
+                                            let row = document.createElement("tr")
+                                            row.setAttribute("id", `id:${item.vas_id}`)
+                                            let id_td = document.createElement("td")
+                                            let type = document.createElement("td")
+                                            let date = document.createElement("td")
+                                            let payment = document.createElement("td")
+
+                                            //add styles
+                                            row.className = "bg-white border-b"
+                                            id_td.className = "py-4 px-3 font-medium text-gray-900"
+                                            type.className = "py-4 px-3"
+                                            date.className = "py-4 px-3"
+                                            payment.className = "py-4 pr-3 text-right"
+
+                                            // set inner html
+                                            id_td.innerHTML = item.reservation_id
+                                            type.innerHTML = item.type
+                                            date.innerHTML = item.date
+                                            payment.innerHTML = item.total
+
+                                            _total += parseInt(item.total)
+
+                                            //append to the parent
+                                            row.append(id_td)
+                                            row.appendChild(type)
+                                            row.appendChild(date)
+                                            row.appendChild(payment)
+
+                                            parent.appendChild(row)
+
+                                            parent.innerHTML += `<tr class="bg-white">
+                                                                    <th scope="row"
+                                                                        class="py-2 pr-9 pl-3 font-medium border-0 bg-transparent whitespace-nowrap">
+                                                                    </th>
+                                                                    <td class="py-2 pr-12">
+                                                                    </td>
+                                                                    <td class="py-2 pr-12 border-b border-double">
+                                                                        Total
+                                                                    </td>
+                                                                    <td class="py-2 pl-9 pr-3 text-right border-b border-double">
+                                                                        LKR&nbsp; ${_total}
+                                                                    </td>
+                                                                </tr>`
+
+                                        })
+                                    }
+                                </script>
+
+
 
                             </tbody>
                         </table>
@@ -119,12 +133,14 @@
     <script>
 
         window.addEventListener("load", () => {
-            html2canvas(document.body).then(function (canvas) {
-                var img = canvas.toDataURL("image/png");
-                var doc = new jsPDF();
-                doc.addImage(img, 'JPEG', 10, 10);
-                doc.save(`occupancy${new Date().toLocaleDateString()}.pdf`);
-            });
+            setTimeout(()=>{
+                    html2canvas(document.body).then(function (canvas) {
+                        var img = canvas.toDataURL("image/png");
+                        var doc = new jsPDF();
+                        doc.addImage(img, 'JPEG', 10, 10);
+                        doc.save(`revenue${new Date().toLocaleDateString()}.pdf`);
+                    });
+            },2000)
         });
     </script>
 </body>

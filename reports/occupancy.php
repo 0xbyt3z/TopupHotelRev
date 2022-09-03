@@ -34,8 +34,12 @@
                     <div class="w-1/3 h-auto flex flex-col">
                         <span class="font-bold mb-2 text-base">Details</span>
                         <span><span class="font-semibold">Report as on</span> : 2022-08-20</span>
-                        <span><span class="font-semibold">Total Occupied Rooms</span> : <?php echo $_GET['toccupied'] ?></span>
-                        <span><span class="font-semibold">Total Free Rooms</span> : <?php echo $_GET['tfree'] ?></span>
+                        <span><span class="font-semibold">Total Occupied Rooms</span> : <span id="torooms"></span>
+                            
+                        </span>
+                        <span><span class="font-semibold">Total available Rooms</span> :
+                            <span id="tarooms"></span>
+                        </span>
                     </div>
 
                 </div>
@@ -52,60 +56,82 @@
                                     <th scope="col" class="py-3 pr-12">
                                         Type
                                     </th>
-                                    <th scope="col" class="py-3 pr-12">
-                                        Paid
-                                    </th>
+                                    
                                     <th scope="col" class="py-3 pl-9 pr-3 text-right">
-                                        Checkout
+                                        Status
                                     </th>
-                                    <th scope="col" class="py-3 pl-9 pr-3 text-right">
-                                        Checkout
-                                    </th>
+                                    
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="bg-white border-b text-sm ">
-                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        R01
-                                    </th>
-                                    <td class="py-2 pr-12">
-                                        Luxury
-                                    </td>
-                                    <td class="py-2 pr-12">
-                                        No
-                                    </td>
+                            <tbody id="parent">
+                                <script>
+                                    let available_rooms = 0
+                                    let occupied_rooms = 0
+                                    let _status = ""
                                     
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-10
-                                    </td>
+                                    window.addEventListener("load", () => {
+                                        populateDataGrid()
+                                    })
 
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-10
-                                    </td>
+                                    const populateDataGrid = async () => {
 
-                                </tr>
-                                <tr class="bg-white border-b ">
-                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        R02
-                                    </th>
-                                    <td class="py-2 pr-12">
-                                    Deluxe
-                                    </td>
-                                    
-                                    <td class="py-2 pr-12">
-                                        Yes
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-12
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        2022-09-12
-                                    </td>
+                                        let response = await fetch("../php_action/get/occupancy.php").then(res => res.json())
+                                        //tbody is the parent
+                                        let parent = document.getElementById("parent")
+                                        parent.innerHTML = ""
+                                        response.map(item => {
+                                            //create nodes
+                                            let row = document.createElement("tr")
+                                            row.setAttribute("id", `id:${item.vas_id}`)
+                                            let rno = document.createElement("td")
+                                            let type = document.createElement("td")
+                                            let status = document.createElement("td")
 
-                                </tr>
+                                            //add styles
+                                            row.className = "bg-white border-b"
+                                            rno.className = "py-4 px-3 font-medium text-gray-900"
+                                            type.className = "py-4 px-3"
+                                            status.className = "py-4 px-3 text-right"
 
-                                
+                                            // set inner html
+                                            rno.innerHTML = item.room_no
+                                            type.innerHTML = item.room_type_name
+
+                                            switch (item.status) {
+                                                case "0":
+                                                    status.innerHTML = "available"
+                                                    available_rooms++
+                                                    break;
+                                                case "1":
+                                                    status.innerHTML = "reserved"
+                                                    break;
+                                                case "2":
+                                                    occupied_rooms++
+                                                    status.innerHTML = "occupied"
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+
+
+                                            //append to the parent
+                                            row.append(rno)
+                                            row.appendChild(type)
+                                            row.appendChild(status)
+
+                                            parent.appendChild(row)
+
+                                            
+
+                                        })
+                                        document.getElementById("torooms").innerHTML = occupied_rooms
+                                        document.getElementById("tarooms").innerHTML = available_rooms
+                                        
+                                    }
+                                </script>
+
+
 
                             </tbody>
                         </table>
@@ -120,12 +146,14 @@
     <script>
 
         window.addEventListener("load", () => {
-            html2canvas(document.body).then(function (canvas) {
+            setTimeout(() => {
+                html2canvas(document.body).then(function (canvas) {
                 var img = canvas.toDataURL("image/png");
                 var doc = new jsPDF();
                 doc.addImage(img, 'JPEG', 10, 10);
                 doc.save(`occupancy${new Date().toLocaleDateString()}.pdf`);
             });
+            }, 1000);
         });
     </script>
 </body>

@@ -13,7 +13,6 @@
 
 <body>
 
-
     <div id="content">
 
         <div class="w-screen h-screen flex">
@@ -40,15 +39,15 @@
                     </div>
                     <div class="w-1/3 h-auto flex flex-col">
                         <span class="font-bold mb-2 text-base">Customer</span>
-                        <span><span class="font-semibold">Name</span> : Sunil Karunarathne</span>
+                        <span><span class="font-semibold">Name</span> : <span id="cname"></span></span>
                         <span><span class="font-semibold">Mobile</span> : (+94) 73 345 3633</span>
-                        <span><span class="font-semibold">Address</span> : 32A/C Galle Rd, Kandy</span>
+                        <span><span class="font-semibold">Address</span> : <span id="caddress"></span></span>
                     </div>
                     <div class="w-1/3 h-auto flex flex-col">
                         <span class="font-bold mb-2 text-base">Billling To</span>
-                        <span><span class="font-semibold">Name</span> : Sunil Karunarathne</span>
+                        <span><span class="font-semibold">Name</span> : <span id="bname"></span></span>
                         <span><span class="font-semibold">Mobile</span> : (+94) 73 345 3633</span>
-                        <span><span class="font-semibold">Address</span> : 45 Pandura, Kadawatha, Sri Lanka</span>
+                        <span><span class="font-semibold">Address</span> : <span id="baddress"></span></span>
                     </div>
 
                 </div>
@@ -60,99 +59,45 @@
                             <thead class="text-sm text-gray-700  bg-gray-300 ">
                                 <tr>
                                     <th scope="col" class="py-3 pr-9 pl-3">
-                                        Package
-                                    </th>
-                                    <th scope="col" class="py-3 pr-12">
-                                        No. of Rooms
-                                    </th>
-                                    <th scope="col" class="py-3 pr-12">
-                                        Charges
+                                        Description
                                     </th>
                                     <th scope="col" class="py-3 pl-9 pr-3 text-right">
-                                        Total
+                                        Charges
                                     </th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-white border-b text-sm ">
-                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        Deluxe
-                                    </th>
-                                    <td class="py-2 pr-12">
-                                        5
-                                    </td>
-                                    <td class="py-2 pr-12">
-                                        Value
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        value
-                                    </td>
-
-                                </tr>
+                                
                                 <tr class="bg-white border-b ">
                                     <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
-                                        Deluxe
+                                        Reservation Charges
                                     </th>
-                                    <td class="py-2 pr-12">
-                                        5
-                                    </td>
-                                    <td class="py-2 pr-12">
-                                        Value
-                                    </td>
+                                    
+                                    
                                     <td class="py-2 pl-9 pr-3 text-right">
-                                        value
+                                        <span id="rcharges"></span>
                                     </td>
+                                </tr>
 
+                                <tr class="bg-white border-b ">
+                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
+                                        Additional Charges
+                                    </th>
+                                    
+                                    <td class="py-2 pl-9 pr-3 text-right">
+                                        <span id="acharges"></span>
+                                    </td>
                                 </tr>
 
                                 <!--summary-->
                                 <tr class="bg-white">
-                                    <th scope="row"
-                                        class="py-2 pr-9 pl-3 font-medium border-0 bg-transparent whitespace-nowrap">
-
-                                    </th>
-                                    <td class="py-2 pr-12">
-
-                                    </td>
-                                    <td class="py-2 pr-12">
-                                        Sub Total
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right">
-                                        12000
-                                    </td>
-
-                                </tr>
-
-                                <tr class="bg-white">
-                                    <th scope="row"
-                                        class="py-2 pr-9 pl-3 font-medium border-0 bg-transparent whitespace-nowrap">
-
-                                    </th>
-                                    <td class="py-2 pr-12">
-
-                                    </td>
-                                    <td class="py-2 pr-12 border-b border-dashed">
-                                        Discount
-                                    </td>
-                                    <td class="py-2 pl-9 border-b border-dashed pr-3 text-right">
-                                        1000
-                                    </td>
-
-                                </tr>
-                                <tr class="bg-white">
-                                    <th scope="row"
-                                        class="py-2 pr-9 pl-3 font-medium border-0 bg-transparent whitespace-nowrap">
-
-                                    </th>
-                                    <td class="py-2 pr-12">
-
-                                    </td>
-                                    <td class="py-2 pr-12 border-b border-double">
+                                    
+                                    <th scope="row" class="py-2 pr-9 pl-3 font-medium text-gray-900 whitespace-nowrap">
                                         Total
-                                    </td>
-                                    <td class="py-2 pl-9 pr-3 text-right border-b border-double">
-                                        LKR&nbsp; 11000
+                                    </th>
+                                    <td class="py-2 pl-9 pr-3 text-right">
+                                        LKR&nbsp;<span id="totalcharges"></span>
                                     </td>
 
                                 </tr>
@@ -173,13 +118,40 @@
     <div id="editor"></div>
     <script>
 
-        window.addEventListener("load", () => {
-            html2canvas(document.body).then(function (canvas) {
-                var img = canvas.toDataURL("image/png");
-                var doc = new jsPDF();
-                doc.addImage(img, 'JPEG', 10, 10);
-                doc.save(`invoice-${resvno}.pdf`);
-            });
+        window.addEventListener("load", async () => {
+
+            //get params from url
+            var url = new URL(location.href);
+            var resvno = url.searchParams.get("resvno");
+            let response = await fetch(`../php_action/get/customerfromrev.php?resvno=${resvno}`).then(res => res.json())
+
+            //set the values
+            document.getElementById("cname").innerHTML = `${response[0].f_name} ${response[0].l_name}`
+            document.getElementById("bname").innerHTML = `${response[0].f_name} ${response[0].l_name}`
+            document.getElementById("caddress").innerHTML = `${response[0].addr_01} ${response[0].addr_02}`
+            document.getElementById("baddress").innerHTML = `${response[0].addr_01} ${response[0].addr_02}`
+            
+            
+            //ge payment details
+            let data = await fetch(`../php_action/get/paymentcharges.php?resvno=${resvno}`).then(res => res.json())
+            
+            console.log(data);
+            document.getElementById("rcharges").innerHTML = data[0].revchg
+            document.getElementById("acharges").innerHTML = data[0].adtchg
+            document.getElementById("totalcharges").innerHTML =parseInt(data[0].revchg) + parseInt(data[0].adtchg)
+            
+            setTimeout(() => {
+                html2canvas(document.body).then(function (canvas) {
+                    var img = canvas.toDataURL("image/png");
+                    var doc = new jsPDF();
+                    doc.addImage(img, 'JPEG', 10, 10);
+                    doc.save(`invoice-${resvno}.pdf`);
+                }).then(()=>{
+                    //location.replace("../pending_reservations.php")
+                });
+            }, 2000);
+
+
         });
     </script>
 </body>

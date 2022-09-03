@@ -5,7 +5,7 @@
     require_once '../db_connect.php';
 
 	try {
-		$sql = "select * from payment where date_format(date,'%Y-%m-%d')=date(now())";
+		$sql = "select customer.* from customer inner join reservation on reservation.cus_id = customer.cus_id where reservation.reservation_id=".$_GET["resvno"]."";
         $result = $link->query($sql);
 
         $rows = array();

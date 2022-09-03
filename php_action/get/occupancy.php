@@ -5,7 +5,7 @@
     require_once '../db_connect.php';
 
 	try {
-		$sql = "select * from payment where date_format(date,'%Y-%m-%d')=date(now())";
+		$sql = "select room.*,room_type.room_type_name from room inner join room_type on room.room_type_id = room_type.room_type_id;";
         $result = $link->query($sql);
 
         $rows = array();
