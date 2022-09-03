@@ -2,3 +2,6 @@ git.bat
 push.bat
 /php_action/db_connect.php
 phpcbf.bat
+
+lib/
+lib/*
