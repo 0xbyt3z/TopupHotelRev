@@ -39,7 +39,7 @@
                 </div>
                 <div class="flex items-center mr-2">
                     <label for="" class="text-sm mr-2">From Date</label>
-                    <input type="date" name="frmdt" id="frmdt" class="bg-white border h-8 px-5 outline-none" value="<?= date('Y-m-d'); ?>" />
+                    <input type="date" name="frmdt" id="frmdt" class="bg-white border h-8 px-5 outline-none" value="<?= date('Y-m-01'); ?>" />
                 </div>
                 <div class="flex items-center mr-2">
                     <label for="" class="text-sm mr-2">To Date</label>
@@ -80,6 +80,9 @@
                                 </th>
                                 <th scope="col" class="py-3 px-2">
                                     Status
+                                </th>
+                                <th scope="col" class="py-3 px-2">
+                                    Pay Status
                                 </th>
                                 <th scope="col" class="py-3 px-2 w-5">
                                 </th>
@@ -177,6 +180,63 @@
     </div>
 </body>
 
+
+<!-- Main modal -->
+<div id="defaultModal" tabindex="-1" class="placeholder-gray-900 backdrop-blur-lg overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex" aria-modal="true" role="dialog">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white  shadow ">
+            <!-- Modal header -->
+            <div class="flex justify-between items-start p-4 rounded-t border-b ">
+                <h3 class="text-xl font-semibold text-gray-900 ">
+                    Optional Packages
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900  text-sm p-1.5 ml-auto inline-flex items-center " data-modal-toggle="defaultModal" onclick="close_modal();">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <form action="post" id="sub_reservation_adcharges">
+                <!-- Modal body -->
+                <input type="hidden" id="sub_revid" name="sub_revid">
+                <div class="p-6 space-y-6">
+                    <div class="h-96 max-h-96 w-full flex overflow-y-scroll">
+                        <table class="w-full max-w-[63vw] text-sm text-left text-gray-500" id="othrchgData">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                                <tr>
+                                    <th scope="col" class="py-3 px-3">
+                                        ID
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+                                        Serivice
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+                                        Charges
+                                    </th>
+                                    <th scope="col" class="py-3 px-3">
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="">
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 ">
+                    <button data-modal-toggle="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-2.5 text-center" id="addsub">Add Charges</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </html>
 
 <script>
@@ -185,6 +245,8 @@
         get_reservation_det();
 
         // showAlert("Text", "bla bla bla", 'error');
+
+        close_modal();
 
     });
 
@@ -218,6 +280,8 @@
                         var status = '';
 
                         var revid = response[x]['reservation_sub_id'];
+
+                        var paysts = response[x]['payment_status'];
 
                         if (response[x]['status'] == 0) {
 
@@ -269,14 +333,38 @@
                             status = '<span>Check-Out</span>';
 
 
+
                         }
 
                         if (response[x]['status'] == 5) {
 
                             status = '<span> Canceled </span>';
 
+                        }
+
+                        var paysts_txt = '';
+
+                        if (paysts == 0) {
+
+                            paysts_txt = '<span> Not Paid </span>';
+
+                            link += '<li>' +
+                                '<a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black" onclick="proceed_payment(' + response[x]['reservation_id'] + ')">Payment</a>' +
+                                '</li>';
+
+                        } else if (paysts == 1) {
+
+                            paysts_txt = '<span> Paid </span>';
+
+                            link += '<li>' +
+                                '<a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black" onclick="payment_invoice(' + response[x]['reservation_id'] + ')"> Print Invoice </a>' +
+                                '</li>';
 
                         }
+
+                        link += '<li>' +
+                            '<a href="#" class="block py-1 px-4 hover:bg-gray-100 text-black" onclick="view_additional_charges(' + revid + ');"> Additional Charges </a>' +
+                            '</li>';
 
                         var button = '<button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"' +
                             'class="peer text-white bg-cyan-500 py-2 px-2 font-medium  text-sm text-center inline-flex items-center"' +
@@ -300,6 +388,7 @@
                         output += '<td class="py-4 px-3">' + response[x]['checkin'] + '</td>';
                         output += '<td class="py-4 px-3">' + response[x]['checkout'] + '</td>';
                         output += '<td class="py-4 px-3">' + status + '</td>';
+                        output += '<td class="py-4 px-3">' + paysts_txt + '</td>';
                         output += '<td class="py-4 px-3">' + button + '</td>';
                         output += '</tr>';
 
@@ -343,6 +432,106 @@
             }
         });
 
+
+    }
+
+    function close_modal() {
+        $("#defaultModal").removeClass("block");
+        $("#defaultModal").addClass("hidden");
+    }
+
+    function open_modal() {
+        $("#defaultModal").removeClass("hidden");
+        $("#defaultModal").addClass("block");
+    }
+
+    function view_additional_charges(revid) {
+
+        open_modal();
+
+        optional_charges(revid);
+
+        $('#sub_revid').val(revid);
+
+    }
+
+    function optional_charges(revid) {
+
+        $.ajax({
+            type: 'POST',
+            url: "php_action/get/optionalcharges.php",
+            data: {
+                revid: revid
+            },
+            dataType: 'json',
+            success: function(response) {
+
+                var len = response.length;
+
+                $('#othrchgData tbody').empty();
+
+                if (len > 0) {
+
+                    for (var x = 0; x < len; x++) {
+
+                        var output = '<tr>';
+                        output += '<td scope="col" class="py-3 px-3">' + response[x]['vas_id'] + '<input type="hidden" name="vas_id[]" id="vas_id_' + x + '" value="' + response[x]['vas_id'] + '"></td>';
+                        output += '<td scope="col" class="py-3 px-3">' + response[x]['service'] + '</td>';
+                        output += '<td scope="col" class="py-3 px-3">' + response[x]['charges'] + '<input type="hidden" name="charges[]" id="charges' + x + '" value="' + response[x]['charges'] + '"></td>';
+                        output += '<td scope="col" class="py-3 px-3"><input type="checkbox" name="check[' + x + ']"  id="check' + x + '" title="" value="1" /></td>';
+                        output += '</tr>';
+
+                        $('#othrchgData tbody').append(output);
+
+                    }
+
+                }
+
+            },
+        });
+
+    }
+
+    $("#addsub").on('click', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "php_action/create/add_reservation_optional_charges.php",
+            data: $("#sub_reservation_adcharges").serialize(),
+            async: false,
+            dataType: 'json',
+            success: function(response) {
+
+                if (response == true) {
+
+                    var revid = $('#sub_revid').val();
+
+                    optional_charges(revid);
+
+                    alert('Saved Sucessfully!');
+
+                } else {
+
+                    alert('Saved Faild!');
+
+                }
+            }
+        });
+
+    });
+
+    function proceed_payment(revid) {
+
+        var w = window.open('about:blank', '_blank');
+        w.location.href = 'payment.php?revid=' + revid;
+
+    }
+
+    function payment_invoice(revid) {
+
+        var w = window.open('about:blank', '_blank');
+        w.location.href = 'reports/invoice.php?resvno=' + revid;
 
     }
 </script>
