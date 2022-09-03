@@ -104,7 +104,7 @@ include "./components/Nav.php";
                                     if(parent.querySelectorAll("td")[3].querySelectorAll("input")[0].checked){
                                         //check the service is not included in the list
                                         if(serviceslist.find((s)=>{return s.name === service})){
-                                            console.log("found");
+                                            //console.log("found");
                                         }else{
                                             serviceslist.push({name: service,charge : charge})
                                         }

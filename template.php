@@ -19,7 +19,7 @@
 <?php
 include "./components/Nav.php";
 
+echo strtotime('noon', $_SERVER['REQUEST_TIME'])
 ?>
-    
 </body>
 </html>
