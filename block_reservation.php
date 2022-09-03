@@ -22,7 +22,7 @@
 
     ?>
 
-    <div class="w-screen h-full flex mt-36 justify-center">
+    <div class="w-screen h-full flex mt-10 justify-center">
         <form method="post" id="add_reservation">
             <span class="text-4xl font-bold mb-10">Block Reservation</span>
             <div class="h-auto w-[70rem] flex ">
@@ -172,7 +172,7 @@
         var html = 'cusid';
         $.ajax({
             type: 'POST',
-            url: "php_action/get/customer.php",
+            url: "php_action/get/agent.php",
             data: {
                 value: value
             },

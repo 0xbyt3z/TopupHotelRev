@@ -4,7 +4,7 @@ session_start();
 
 require_once '../db_connect.php';
 
-$sql = "select * from customer where user_id IN (select user_id from users where type_id = 4)";
+$sql = "select * from customer where user_id IN (select user_id from users where type_id = 3)";
 $result = $link->query($sql);
 
 if ($result->num_rows > 0) {
