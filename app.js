@@ -21,6 +21,9 @@ const showAlert = (t, m, status) => {
     case "error":
       bgcolor = "bg-red-300"
       textcolor = "text-red-900"
+    case "warning":
+        bgcolor = "bg-orange-300"
+        textcolor = "text-orange-900"
       break;
     default:
       break;

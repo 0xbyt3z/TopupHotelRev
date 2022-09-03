@@ -96,11 +96,28 @@ include "./components/Nav.php";
                                             '.$checkout.'
                                             </td>
                                             <td class="py-4 px-2 w-5">
-                                                <button class="bg-cyan-500 py-2 px-3 text-white font-bold">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                                </button>
+                                                    <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+                                                        class="peer text-white bg-cyan-500 py-2 px-2 font-medium  text-sm text-center inline-flex items-center"
+                                                        type="button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                                        </svg>
+
+                                                    </button>
+                                            
+                                                    <!-- Dropdown menu -->
+                                                    <div id="dropdownDivider"
+                                                        class="hidden peer-hover:block hover:block absolute z-10 w-44 bg-white  divide-y divide-gray-100 shadow ">
+                                                        <ul class=" py-1 text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
+                                                            <li>
+                                                                <a href="Link1" class="block py-1 px-4 hover:bg-gray-100 text-black">Link1</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="Link1" class="block py-1 px-4 hover:bg-gray-100 text-black">Link1</a>
+                                                            </li>
+                                                        </ul>
+                                            
+                                                    </div>
                                             </td>
 
 
