@@ -22,15 +22,12 @@
 
     ?>
 
-    <div class="w-screen h-full flex mt-24 justify-center">
-
+    <div class="w-screen h-full flex mt-10 justify-center">
         <form method="post" id="add_reservation">
-
             <span class="text-4xl font-bold mb-10">Block Reservation</span>
             <div class="h-auto w-[70rem] flex ">
                 <!--left-->
                 <div class="w-1/3 mt-12 h-auto ">
-
                     <div class="grid grid-cols-2 gap-2">
                         <div class="mr-4 group">
                             <label for="" class="text-sm">Traval Agent</label>
@@ -42,13 +39,6 @@
                         </div>
                         <div class="mr-4 group">
 
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="mr-4 group">
-                            <label for="" class="text-sm">Travel Agent</label>
-                            <input type="text"
-                                class="h-8 w-full border border-gray-300 outline-0 pl-2 focus:border-gray-900" required>
                         </div>
                         <div class="mr-4 group col-span-2">
                             <label for="" class="text-sm">Card Holder Name</label>
@@ -186,10 +176,28 @@
                 <tbody id="parent">
                     <!-- rows will programatically append here -->
 
-                </tbody>
-
-            </table>
-    </div>
+            <!--table -->
+            <div class="mt-10 h-auto border-0 border-l-[1px] border-l-gray-500">
+                <input type="hidden" name="addrow_cnt" id="addrow_cnt" value="0">
+                <table class="w-full max-w-[63vw] text-sm text-left text-gray-500" id="tmp_tblData">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 sticky top-0">
+                        <tr>
+                            <th scope="col" class="py-3 px-3">
+                                Room no
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Check-In Date
+                            </th>
+                            <th scope="col" class="py-3 px-3">
+                                Check-Out Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- rows will programatically append here -->
+                    </tbody>
+                </table>
+            </div>
 
     </div>
 
@@ -259,7 +267,6 @@
 
 </html>
 
-
 <script>
     $().ready(function () {
 
@@ -274,7 +281,7 @@
         var html = 'cusid';
         $.ajax({
             type: 'POST',
-            url: "php_action/get/customer.php",
+            url: "php_action/get/agent.php",
             data: {
                 value: value
             },
