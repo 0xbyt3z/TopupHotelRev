@@ -18,8 +18,8 @@ $sql = "INSERT INTO reservation (Name_on_card, cvv, expiry_date, card_number)
 $link->query($sql);
 $card_id = mysqli_insert_id($link);
 
-$sql = "INSERT INTO reservation (created_date, reservation_type, status, cus_id, card_id, payment_type)
-    VALUES ('" . date('Y-m-d') . "', '2', '0', '$cusid', '$card_id', '2')";
+$sql = "INSERT INTO reservation (created_date, reservation_type, cus_id, card_id, payment_type)
+    VALUES ('" . date('Y-m-d') . "', '2', '$cusid', '$card_id', '2')";
 $link->query($sql);
 $reservation_id = mysqli_insert_id($link);
 
