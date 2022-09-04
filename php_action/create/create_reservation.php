@@ -25,13 +25,15 @@ require_once '../db_connect.php';
 
     }
 
-    $sql = "INSERT INTO reservation (created_date, reservation_type, status, cus_id, card_id, payment_type)
-    VALUES ('". date('Y-m-d') ."', '1', '0', '$cusid', '$card_id', '$pymtid')";
+    $sql = "INSERT INTO reservation (created_date, reservation_type, cus_id, card_id, payment_type)
+    VALUES ('". date('Y-m-d') ."', '1', '$cusid', '$card_id', '$pymtid')";
     $link->query($sql);
     $reservation_id = mysqli_insert_id($link);
 
     $sql = "INSERT INTO reservation_sub (check_out, check_in, reservation_id, room_id)
     VALUES ('$chkoutdt', '$chkindt', '$reservation_id', '$roomid')";
+
+
     // $link->query($sql);
     // $reservation_sub_id = mysqli_insert_id($link);
 

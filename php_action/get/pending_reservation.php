@@ -17,6 +17,16 @@ try {
         $where = "sub.status = $stat AND";
     }
 
+    // if ($_SESSION['userType'] == 3 || $_SESSION['userType'] == 4) {
+
+    if ($_SESSION['cus_id'] != '') {
+
+        $where .= "cus.cus_id = " . $_SESSION['cus_id'] . " AND ";
+    }
+
+
+    // }
+
     $sql = "
         select sub.*, rom.room_no, typ.room_type_name, CONCAT(cus.f_name,' ',cus.l_name) AS cusnm, typ.maximum_guest,
         DATE_FORMAT(sub.check_in, '%Y-%m-%d') AS checkin, DATE_FORMAT(sub.check_out, '%Y-%m-%d') AS checkout, rev.payment_status

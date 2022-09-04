@@ -67,7 +67,7 @@ if(isset($_SESSION["user"]))
             dataType: 'json',
             success: function(response) {
                 if(response == true){
-                    window.location.href='home.php';
+                    window.location.href='index.php';
                 } else {
                     alert('Login Faild!');
                 }

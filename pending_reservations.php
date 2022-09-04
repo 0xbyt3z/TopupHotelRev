@@ -43,7 +43,7 @@
                 </div>
                 <div class="flex items-center mr-2">
                     <label for="" class="text-sm mr-2">To Date</label>
-                    <input type="date" name="todt" id="todt" class="bg-white border h-8 px-5 outline-none" value="<?= date('Y-m-d'); ?>" />
+                    <input type="date" name="todt" id="todt" class="bg-white border h-8 px-5 outline-none" value="<?= date('Y-m-t'); ?>" />
                 </div>
                 <div class="flex items-center mr-2">
                     <button class="bg-yellow-700 py-2 px-5 text-white font-bold" onclick="get_reservation_det()">Search</button>
@@ -379,6 +379,12 @@
                             link +
                             '</ul>' +
                             '</div>';
+
+                        <?php if ($_SESSION['userType'] == 3 || $_SESSION['userType'] == 4) { ?>
+
+                            button = '';
+
+                        <?php } ?>
 
                         var output = '<tr class="bg-white border-b">';
                         output += '<td class="py-4 px-3">' + response[x]['cusnm'] + '</td>';

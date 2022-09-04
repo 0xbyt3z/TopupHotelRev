@@ -19,7 +19,7 @@ require_once 'db_connect.php';
 
 	try {
 		if($pass == $cpass){
-			$sql = "INSERT INTO users (f_name, l_name,password,user_name,type_id) VALUES ('".$fname."','".$lname."' ,'".md5($pass)."','".$username."','2')";
+			$sql = "INSERT INTO users (f_name, l_name,password,user_name,type_id) VALUES ('".$fname."','".$lname."' ,'".md5($pass)."','".$username."','3')";
 			
 			if (mysqli_query($link, $sql)) {
 				$last_id = mysqli_insert_id($link);
